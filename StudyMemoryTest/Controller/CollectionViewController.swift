@@ -7,22 +7,25 @@
 
 import UIKit
 
-class CollectionViewController: UICollectionViewController {
+class CollectionViewController: UICollectionViewController{
     
     // Properties
-   
+    
+    private var mainView : MainCollectionView!
+    
     // Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // MARK: Navigation
+        mainView = MainCollectionView(frame: view.bounds)
+        view.addSubview(mainView)
+        
+        // MARK: 네비게이션
         title = "암기 테스트" // 네비게이션 타이틀 제목
       
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addButton
-        
-        
         
         // Additional setup
         
