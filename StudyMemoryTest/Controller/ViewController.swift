@@ -10,7 +10,7 @@ import Vision
 
 class ViewController: UIViewController {
     
-    private var customView: CustomView!
+    private var customView: CustomView! // 뷰
     
     override func viewDidLoad() {
         super.viewDidLoad()

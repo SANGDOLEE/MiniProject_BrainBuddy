@@ -45,10 +45,26 @@
             </objects>
             <point key="canvasLocation" x="147.07317073170731" y="-34.067796610169495"/>
         </scene>
-        <!--View Controller-->
+        <!--AddImageViewController-->
+        <scene sceneID="n5X-01-lO3">
+            <objects>
+                <viewController title="AddImageViewController" id="XKQ-So-VwU" customClass="AddImageViewController" customModule="StudyMemoryTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="m83-jN-CaR">
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="UY3-sL-Spe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yXd-UN-y5I"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="anc-2E-h1f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="147" y="708"/>
+        </scene>
+        <!--ViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="StudyMemoryTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="StudyMemoryTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -58,7 +74,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="888.29268292682923" y="-34.067796610169495"/>
+            <point key="canvasLocation" x="1594" y="-34"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PKE-Jc-PLS">
@@ -77,6 +93,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="soB-VK-feg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-609.51219512195121" y="-34.067796610169495"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="66B-6f-SEL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XD4-XP-hTH" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="umQ-f1-uKt">
+                        <rect key="frame" x="0.0" y="24" width="820" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="XKQ-So-VwU" kind="relationship" relationship="rootViewController" id="NJJ-L7-lG6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ccs-1D-5ju" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-610" y="708"/>
         </scene>
     </scenes>
     <resources>

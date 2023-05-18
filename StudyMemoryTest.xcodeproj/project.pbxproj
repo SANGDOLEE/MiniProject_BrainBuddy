@@ -17,6 +17,8 @@
 		1FBA01BB2A14DBB7005D8364 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBA01BA2A14DBB7005D8364 /* CustomView.swift */; };
 		1FBA01BD2A14E091005D8364 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBA01BC2A14E091005D8364 /* CollectionViewController.swift */; };
 		1FBA01C32A14F4D0005D8364 /* MainCollecionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBA01C22A14F4D0005D8364 /* MainCollecionView.swift */; };
+		1FBA01C52A1617F4005D8364 /* AddImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBA01C42A1617F4005D8364 /* AddImageViewController.swift */; };
+		1FBA01C72A161803005D8364 /* AddImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBA01C62A161803005D8364 /* AddImageView.swift */; };
 		DCDE17DCEA32D93EAB8AAABA /* Pods_StudyMemoryTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CF662550C4D98CD63FA1736 /* Pods_StudyMemoryTest.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +36,8 @@
 		1FBA01BA2A14DBB7005D8364 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		1FBA01BC2A14E091005D8364 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		1FBA01C22A14F4D0005D8364 /* MainCollecionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollecionView.swift; sourceTree = "<group>"; };
+		1FBA01C42A1617F4005D8364 /* AddImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageViewController.swift; sourceTree = "<group>"; };
+		1FBA01C62A161803005D8364 /* AddImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageView.swift; sourceTree = "<group>"; };
 		3E4703B38A1F376C427AC7B5 /* Pods-StudyMemoryTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyMemoryTest.debug.xcconfig"; path = "Target Support Files/Pods-StudyMemoryTest/Pods-StudyMemoryTest.debug.xcconfig"; sourceTree = "<group>"; };
 		F7A99F689724384116AA17C9 /* Pods-StudyMemoryTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StudyMemoryTest.release.xcconfig"; path = "Target Support Files/Pods-StudyMemoryTest/Pods-StudyMemoryTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				1FBA01BC2A14E091005D8364 /* CollectionViewController.swift */,
+				1FBA01C42A1617F4005D8364 /* AddImageViewController.swift */,
 				1F4BD4DC2A14D6C100CA550D /* ViewController.swift */,
 			);
 			path = Controller;
@@ -97,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				1FBA01C22A14F4D0005D8364 /* MainCollecionView.swift */,
+				1FBA01C62A161803005D8364 /* AddImageView.swift */,
 				1FBA01BA2A14DBB7005D8364 /* CustomView.swift */,
 			);
 			path = View;
@@ -244,6 +250,8 @@
 			files = (
 				1FBA01C32A14F4D0005D8364 /* MainCollecionView.swift in Sources */,
 				1FBA01BD2A14E091005D8364 /* CollectionViewController.swift in Sources */,
+				1FBA01C52A1617F4005D8364 /* AddImageViewController.swift in Sources */,
+				1FBA01C72A161803005D8364 /* AddImageView.swift in Sources */,
 				1FBA01BB2A14DBB7005D8364 /* CustomView.swift in Sources */,
 				1F4BD4DD2A14D6C100CA550D /* ViewController.swift in Sources */,
 				1F4BD4D92A14D6C100CA550D /* AppDelegate.swift in Sources */,
