@@ -10,10 +10,7 @@ import UIKit
 class CollectionViewController: UICollectionViewController{
     
     // Properties
-    
     private var mainView : MainCollectionView!
-    
-    // Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,20 +18,11 @@ class CollectionViewController: UICollectionViewController{
         mainView = MainCollectionView(frame: view.bounds)
         view.addSubview(mainView)
         
-        // MARK: 네비게이션
-        /*
-        let titleAttributes: [NSAttributedString.Key: Any] = [
-             .foregroundColor: UIColor.white
-        ]
-        navigationController?.navigationBar.titleTextAttributes = titleAttributes
-        */
         title = "오늘의 암기" // 네비게이션 타이틀 제목
-        
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         addButton.tintColor = .black
         navigationItem.rightBarButtonItem = addButton
-        
         
         
         // Additional setup
@@ -77,11 +65,20 @@ class CollectionViewController: UICollectionViewController{
      }
      */
     
-    // Additional methods
+    //MARK: Additional methods
     
+    open override var shouldAutorotate: Bool {
+        return false
+    }
+    
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
+    open override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return .portrait
+    }
 }
-
-
 
 extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     
@@ -93,6 +90,6 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 
 extension CollectionViewController {
     
-    // Other functionality and method
     
 }
+

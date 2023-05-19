@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import SnapKit
 
 class AddImageView : UIView{
@@ -22,7 +23,7 @@ class AddImageView : UIView{
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named:"example1")
+        imageView.image = nil
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -43,7 +44,7 @@ class AddImageView : UIView{
         super.layoutSubviews()
       
         imageView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(safeAreaInsets.top)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(20)
             make.left.equalToSuperview().offset(20)
             make.width.equalTo(frame.size.width - 40)
             make.height.equalTo(frame.size.width - 40)

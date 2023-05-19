@@ -33,7 +33,7 @@ class AddImageViewController: UIViewController {
         navigationItem.rightBarButtonItems = [ saveButton, addCameraButton ] // 네비게이션 버튼2개 배열로 할당
         
         
-        addImageView.setImage(UIImage(named: "example1"))
+        addImageView.setImage(nil) 
         recognizerText(image: addImageView.imageView.image)
         
         /*
@@ -165,6 +165,18 @@ class AddImageViewController: UIViewController {
         
     }
     
+    
+    open override var shouldAutorotate: Bool {
+        return false
+    }
+    
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
+    open override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return .portrait
+    }
 }
 
 

@@ -62,8 +62,17 @@ class ViewController: UIViewController {
         
     }
     
+    open override var shouldAutorotate: Bool {
+        return false
+    }
     
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
     
+    open override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return .portrait
+    }
     
 }
 
