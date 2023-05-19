@@ -11,6 +11,12 @@ import SnapKit
 
 class AddImageView : UIView{
     
+    let mainView: UIView = {
+        let mainView = UIView()
+        mainView.backgroundColor = .systemBlue
+        return mainView
+    }()
+    
     let label: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
@@ -29,6 +35,7 @@ class AddImageView : UIView{
         return button
     }()
     
+    
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = nil
@@ -38,8 +45,9 @@ class AddImageView : UIView{
     
     override init(frame: CGRect){
         super.init(frame:frame)
+        mainView.addSubview(imageView)
         addSubview(label)
-        addSubview(imageView)
+        addSubview(mainView)
         addSubview(button)
         self.backgroundColor = UIColor.systemBlue
     }
@@ -51,12 +59,19 @@ class AddImageView : UIView{
     
     override func layoutSubviews() {
         super.layoutSubviews()
-      
+        
+        mainView.snp.makeConstraints { (make) in
+            make.top.equalTo(safeAreaLayoutGuide.snp.topMargin).offset(20)
+            make.width.height.equalTo(300)
+            make.left.right.equalToSuperview()
+
+        }
+        
         imageView.snp.makeConstraints { (make) in
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(20)
-            make.left.equalToSuperview().offset(20)
-            make.width.equalTo(frame.size.width - 40)
-            make.height.equalTo(frame.size.width - 40)
+            make.top.equalTo(mainView.snp.top).offset(10)
+            make.left.equalTo(mainView.snp.left).offset(10)
+            make.right.equalTo(mainView.snp.right).offset(-10)
+            make.bottom.equalTo(mainView.snp.bottom).offset(-10)
         }
         
         button.snp.makeConstraints{ (make) in

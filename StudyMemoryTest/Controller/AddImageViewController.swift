@@ -25,10 +25,10 @@ class AddImageViewController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor.black
         
         let addCameraButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(addCameraTapped))
-        addCameraButton.tintColor = .black
+        addCameraButton.tintColor = .white
         
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTapped))
-        saveButton.tintColor = .black
+        saveButton.tintColor = .white
         
         navigationItem.rightBarButtonItems = [ saveButton, addCameraButton ] // 네비게이션 버튼2개 배열로 할당
         
