@@ -13,7 +13,7 @@ class MainCollectionView: UIView {
         super.init(frame: frame)
         
         // 배경색 설정
-        self.backgroundColor = UIColor.systemBlue
+        self.backgroundColor = UIColor.tintColor
     }
     
     required init?(coder aDecoder: NSCoder){
