@@ -21,6 +21,14 @@ class AddImageView : UIView{
         return label
     }()
     
+    let button: UIButton = {
+        let button = UIButton()
+        button.setTitle("Click", for: .normal)
+        button.backgroundColor = UIColor.white
+        button.setTitleColor(UIColor.systemBlue, for: .normal)
+        return button
+    }()
+    
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = nil
@@ -32,6 +40,7 @@ class AddImageView : UIView{
         super.init(frame:frame)
         addSubview(label)
         addSubview(imageView)
+        addSubview(button)
         self.backgroundColor = UIColor.systemBlue
     }
     
@@ -48,6 +57,11 @@ class AddImageView : UIView{
             make.left.equalToSuperview().offset(20)
             make.width.equalTo(frame.size.width - 40)
             make.height.equalTo(frame.size.width - 40)
+        }
+        
+        button.snp.makeConstraints{ (make) in
+            make.width.height.equalTo(150)
+            make.center.equalToSuperview()
         }
         
         label.snp.makeConstraints { (make) in
