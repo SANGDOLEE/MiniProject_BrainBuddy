@@ -128,7 +128,8 @@ class AddImageViewController: UIViewController {
             addImageView.imageView.image = image
             recognizerText(image: image)
         }
-        addImageView.photoLabel.isHidden = true // 사진이 선택되면 Label Hidden
+        addImageView.photoLabel.isHidden = true // 사진이 선택되면 Label 숨김
+        addImageView.albumImageView.isHidden = true // 사진이 선택되면 albumImage 숨김
         picker.dismiss(animated: true, completion: nil)
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

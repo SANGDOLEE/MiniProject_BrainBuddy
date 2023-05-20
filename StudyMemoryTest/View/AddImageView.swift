@@ -45,7 +45,7 @@ class AddImageView : UIView{
     
     let label: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .white
+        label.backgroundColor = .yellow
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 30)
         label.text = "Starting..."
@@ -53,6 +53,7 @@ class AddImageView : UIView{
         return label
     }()
     
+    /*
     let button: UIButton = {
         let button = UIButton()
         button.setTitle("Click", for: .normal)
@@ -60,7 +61,7 @@ class AddImageView : UIView{
         button.setTitleColor(UIColor.systemBlue, for: .normal)
         return button
     }()
-    
+    */
     
     override init(frame: CGRect){
         super.init(frame:frame)
@@ -71,8 +72,12 @@ class AddImageView : UIView{
         mainView.addSubview(imageView)
         mainView.addSubview(photoLabel)
         mainView.addSubview(albumImageView)
+        
+        
         addSubview(label)
-        addSubview(button)
+        //addSubview(button)
+        subView.addSubview(label)
+        //subView.addSubview(button)
         self.backgroundColor = UIColor.tintColor // SuperView 배경색
     }
     
@@ -89,15 +94,14 @@ class AddImageView : UIView{
             make.width.equalToSuperview()
             make.height.equalToSuperview().dividedBy(3) // Height = 해상도의 1/3
             make.left.right.equalToSuperview()
-
         }
         
         subView.snp.makeConstraints { make in
             make.top.equalTo(mainView.snp.bottom)
             make.left.right.bottom.equalToSuperview()
         }
-        let cornerRadius : CGFloat = 30.0
-        subView.layer.cornerRadius = cornerRadius
+        let subViewcornerRadius : CGFloat = 30.0
+        subView.layer.cornerRadius = subViewcornerRadius
         subView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         subView.layer.masksToBounds = true
         
@@ -119,17 +123,21 @@ class AddImageView : UIView{
             make.centerX.equalToSuperview()
         }
         
+        /*
         button.snp.makeConstraints{ make in
             make.width.height.equalTo(150)
             make.center.equalToSuperview()
         }
+         */
         
         label.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(frame.size.width + safeAreaInsets.top)
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(20)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(200)
+            make.height.equalToSuperview().multipliedBy(0.75) // superView의 75% 높이 일관
         }
+        
     }
     
     func setImage(_ image: UIImage?){
