@@ -122,12 +122,13 @@ class AddImageViewController: UIViewController {
         
     }
     
-    // Camera -> 사진 추가 or 추
+    // Camera -> 사진 추가 or 취소
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.originalImage] as? UIImage {
             addImageView.imageView.image = image
             recognizerText(image: image)
         }
+        addImageView.photoLabel.isHidden = true // 사진이 선택되면 Label Hidden
         picker.dismiss(animated: true, completion: nil)
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
