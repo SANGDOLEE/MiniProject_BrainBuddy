@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CollectionViewController: UICollectionViewController{
+class CollectionViewController: UIViewController {
     
     // Properties
     private var mainView : MainCollectionView!
@@ -18,18 +18,24 @@ class CollectionViewController: UICollectionViewController{
         mainView = MainCollectionView(frame: view.bounds)
         view.addSubview(mainView)
         
+        
+        // MARK: 네비게이션
         title = "오늘의 암기" // 네비게이션 타이틀 제목
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         addButton.tintColor = .black
         navigationItem.rightBarButtonItem = addButton
         
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .systemBlue
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        appearance.shadowColor = .none
+        //navigationController?.navigationBar.tintColor = .white
+        //navigationController?.navigationBar.standardAppearance = appearance
+        //navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
-        // Additional setup
-        
-        // Fetch data
-        
-        // Configure layout
+      
     }
     
     // 문제집 추가
@@ -86,9 +92,20 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     
 }
 
-// MARK: - Other Extensions
+extension CollectionViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = mainView.collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! CollectionViewCell
+        
+        return cell
+    }
+}
 
-extension CollectionViewController {
+extension CollectionViewController: UICollectionViewDelegate {
     
     
 }
