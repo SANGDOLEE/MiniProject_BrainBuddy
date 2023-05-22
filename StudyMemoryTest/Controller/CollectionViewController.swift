@@ -117,16 +117,16 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     
     // cell size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (view.frame.width - 30 - 10) / 4, height: (view.frame.width - 30 - 10) / 4)
+        return CGSize(width: (view.frame.width - 40) / 4.5, height: (view.frame.width - 40) / 4.5)
     }
     
     // cell 사이 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 22
     }
     
     // cell과 view의 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
     }
 }

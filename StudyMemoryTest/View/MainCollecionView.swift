@@ -21,14 +21,13 @@ class MainCollectionView: UIView {
     override init(frame: CGRect){
         super.init(frame: frame)
         
-        // 배경색 설정
         self.backgroundColor = UIColor.tintColor
         
         addSubview(collectionView)
-     
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         collectionView.layer.cornerRadius = 10
         collectionView.layer.masksToBounds = true
+        
     }
     
     required init?(coder aDecoder: NSCoder){
@@ -47,7 +46,7 @@ class MainCollectionView: UIView {
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
             make.right.equalToSuperview()
             
-            collectionView.backgroundColor = .systemBlue
+            collectionView.backgroundColor = .tintColor
         }
         
     }
