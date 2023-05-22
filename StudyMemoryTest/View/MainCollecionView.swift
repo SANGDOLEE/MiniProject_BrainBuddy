@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import SnapKit
 
 let cellID = "Cell" // Cell ID 등록
 
 class MainCollectionView: UIView {
     
     let collectionView: UICollectionView = {
-        let flowlayout = UICollectionViewLayout()
+        let flowlayout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
         return cv
     }()
@@ -24,15 +25,7 @@ class MainCollectionView: UIView {
         self.backgroundColor = UIColor.tintColor
         
         addSubview(collectionView)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        collectionView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        
-        collectionView.backgroundColor = .tintColor
-        
+     
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         
     }
@@ -42,5 +35,20 @@ class MainCollectionView: UIView {
         
         //배경색 설정
         // self.backgroundColor = UIColor.systemBlue
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide.snp.top)
+            make.left.equalToSuperview()
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
+            make.right.equalToSuperview()
+            collectionView.backgroundColor = .systemBlue
+        }
+        
+    
+        
     }
 }

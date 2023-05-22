@@ -18,6 +18,9 @@ class CollectionViewController: UIViewController {
         mainView = MainCollectionView(frame: view.bounds)
         view.addSubview(mainView)
         
+        mainView.collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: cellID)
+        mainView.collectionView.delegate = self
+        mainView.collectionView.dataSource = self
         
         // MARK: 네비게이션
         title = "오늘의 암기" // 네비게이션 타이틀 제목
@@ -86,11 +89,10 @@ class CollectionViewController: UIViewController {
     }
 }
 
-extension CollectionViewController: UICollectionViewDelegateFlowLayout {
-    
-    // UICollectionViewDelegateFlowLayout methods
-    
-}
+
+
+
+// MARK: 콜렉션 뷰
 
 extension CollectionViewController: UICollectionViewDataSource {
     
@@ -101,6 +103,7 @@ extension CollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = mainView.collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! CollectionViewCell
         
+        cell.backgroundColor = .red
         return cell
     }
 }
@@ -110,3 +113,21 @@ extension CollectionViewController: UICollectionViewDelegate {
     
 }
 
+
+extension CollectionViewController: UICollectionViewDelegateFlowLayout {
+    
+    // cell size
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (view.frame.width - 30 - 10 ) / 4, height: (view.frame.width - 30 - 10) / 4)
+    }
+    
+    // cell 사이 간격
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    // cell과 view의 간격
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    }
+}
