@@ -32,6 +32,14 @@ class AddImageViewController: UIViewController {
         
         navigationItem.rightBarButtonItems = [ trashButton, addCameraButton ] // 네비게이션 버튼2개 배열로 할당
         
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .systemBlue
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.shadowColor = .none
+        //navigationController?.navigationBar.tintColor = .white
+        //navigationController?.navigationBar.standardAppearance = appearance
+        //navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
         
         let addImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(moveAlbumTapped))
