@@ -33,17 +33,13 @@ class AddImageViewController: UIViewController {
         navigationItem.rightBarButtonItems = [ saveButton, addCameraButton ] // 네비게이션 버튼2개 배열로 할당
         
         
-        addImageView.setImage(nil) 
-        recognizerText(image: addImageView.imageView.image)
         
-        /*
-         let navigationBar = UINavigationBar(frame: CGRect(x:0, y:0, width:view.frame.size.width, height:view.frame.size.height))
-         navigationBar.backgroundColor = .systemBlue
-         
-         let navigationItem = UINavigationItem(title: "오늘의 문제집")
-         navigationBar.items = [navigationItem]
-         view.addSubview(navigationBar)
-         */
+        let addImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(moveAlbumTapped))
+        addImageView.albumImageView.addGestureRecognizer(addImageTapGesture)
+        addImageView.albumImageView.isUserInteractionEnabled = true
+        
+        addImageView.setImage(nil)
+        recognizerText(image: addImageView.imageView.image)
         
     }
     
@@ -88,7 +84,7 @@ class AddImageViewController: UIViewController {
         
     }
     
-    
+  
     // 카메라 선택
     @objc func addCameraTapped() {
         checkCameraPermissions()
@@ -120,6 +116,9 @@ class AddImageViewController: UIViewController {
         
         present(alertController, animated: true, completion: nil)
         
+    }
+    @objc func moveAlbumTapped() {
+        addCameraTapped()
     }
     
     // Camera -> 사진 추가 or 취소

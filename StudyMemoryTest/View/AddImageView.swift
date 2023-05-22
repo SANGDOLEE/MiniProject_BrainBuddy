@@ -47,7 +47,7 @@ class AddImageView : UIView{
         let label = UILabel()
         label.backgroundColor = .white
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 24)
+        label.font = UIFont.systemFont(ofSize: 20)
         label.text = ""
         label.textAlignment = .center
         return label
