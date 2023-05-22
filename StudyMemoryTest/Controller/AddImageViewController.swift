@@ -64,7 +64,7 @@ class AddImageViewController: UIViewController {
             }).joined(separator:"\n") // 줄바꿈으로 구분
             
             DispatchQueue.main.async {
-                self?.addImageView.setLabelText(text)
+                self?.addImageView.setTextViewText(text)
             }
         }
         
@@ -79,7 +79,7 @@ class AddImageViewController: UIViewController {
             try handler.perform([request]) // Handler에서 요청 수행
         }
         catch {
-            addImageView.setLabelText("\(error)")
+            addImageView.setTextViewText("\(error)")
         }
         
     }

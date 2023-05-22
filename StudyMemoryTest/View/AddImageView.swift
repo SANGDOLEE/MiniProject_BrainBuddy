@@ -43,14 +43,14 @@ class AddImageView : UIView{
         return albumImageView
     }()
     
-    let label: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .white
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.text = ""
-        label.textAlignment = .center
-        return label
+    let textView: UITextView = {
+        let textView = UITextView()
+        textView.backgroundColor = .white
+        textView.font = UIFont.systemFont(ofSize: 24)
+        textView.text = ""
+        textView.textAlignment = .center
+        textView.isEditable = false
+        return textView
     }()
     
     let button: UIButton = {
@@ -72,9 +72,9 @@ class AddImageView : UIView{
         mainView.addSubview(albumImageView)
         
         
-        addSubview(label)
+        addSubview(textView)
         addSubview(button)
-        subView.addSubview(label)
+        subView.addSubview(textView)
         subView.addSubview(button)
         
         self.backgroundColor = UIColor.tintColor // SuperView 배경색
@@ -124,19 +124,19 @@ class AddImageView : UIView{
             make.centerX.equalToSuperview()
         }
         
-        label.snp.makeConstraints { make in
+        textView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(20)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalToSuperview().multipliedBy(0.8) // superView의 75% 높이 일관
             
-            label.layer.borderWidth = 1.0
-            label.layer.borderColor = UIColor.systemGray6.cgColor
+            textView.layer.borderWidth = 1.0
+            textView.layer.borderColor = UIColor.systemGray6.cgColor
             
             let labelCornerRadius : CGFloat = 30.0
-            label.layer.cornerRadius = labelCornerRadius
-            label.layer.masksToBounds = true
+            textView.layer.cornerRadius = labelCornerRadius
+            textView.layer.masksToBounds = true
         }
         
         button.snp.makeConstraints{ make in
@@ -144,7 +144,7 @@ class AddImageView : UIView{
             make.height.equalToSuperview().multipliedBy(0.1) // height
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().inset(30)
-            make.top.equalTo(label.snp.bottom).offset(30)
+            make.top.equalTo(textView.snp.bottom).offset(30)
             
             let buttonCornerRadius : CGFloat = 20.0
             button.layer.cornerRadius = buttonCornerRadius
@@ -157,8 +157,8 @@ class AddImageView : UIView{
         imageView.image = image
     }
     
-    func setLabelText(_ text: String) {
-        label.text = text
+    func setTextViewText(_ text: String) {
+         textView.text = text
     }
     
     
