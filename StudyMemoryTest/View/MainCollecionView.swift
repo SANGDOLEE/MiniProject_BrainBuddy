@@ -27,7 +27,8 @@ class MainCollectionView: UIView {
         addSubview(collectionView)
      
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: cellID)
-        
+        collectionView.layer.cornerRadius = 10
+        collectionView.layer.masksToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder){
@@ -45,10 +46,11 @@ class MainCollectionView: UIView {
             make.left.equalToSuperview()
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
             make.right.equalToSuperview()
+            
             collectionView.backgroundColor = .systemBlue
         }
         
-    
-        
     }
+    
+    
 }

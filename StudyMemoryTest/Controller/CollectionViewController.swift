@@ -103,7 +103,6 @@ extension CollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = mainView.collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! CollectionViewCell
         
-        cell.backgroundColor = .red
         return cell
     }
 }
@@ -118,7 +117,7 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     
     // cell size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (view.frame.width - 30 - 10 ) / 4, height: (view.frame.width - 30 - 10) / 4)
+        return CGSize(width: (view.frame.width - 30 - 10) / 4, height: (view.frame.width - 30 - 10) / 4)
     }
     
     // cell 사이 간격

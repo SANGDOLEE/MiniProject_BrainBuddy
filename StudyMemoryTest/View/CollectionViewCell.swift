@@ -9,4 +9,15 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
     
+    override init(frame: CGRect){
+        super.init(frame: frame)
+        
+        self.layer.cornerRadius = 30
+        self.layer.masksToBounds = true
+        self.backgroundColor = .white
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
