@@ -27,10 +27,10 @@ class AddImageViewController: UIViewController {
         let addCameraButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(addCameraTapped))
         addCameraButton.tintColor = .white
         
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTapped))
-        saveButton.tintColor = .white
+        let trashButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trashTapped))
+        trashButton.tintColor = .white
         
-        navigationItem.rightBarButtonItems = [ saveButton, addCameraButton ] // 네비게이션 버튼2개 배열로 할당
+        navigationItem.rightBarButtonItems = [ trashButton, addCameraButton ] // 네비게이션 버튼2개 배열로 할당
         
         
         
@@ -162,8 +162,10 @@ class AddImageViewController: UIViewController {
         })
     }
     
-    @objc func saveTapped() {
-        
+    // imageView에 추가된 image, text 제거
+    @objc func trashTapped() {
+        addImageView.imageView.image = nil
+        addImageView.textView.text = nil
     }
     
     
