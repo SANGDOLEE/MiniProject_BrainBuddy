@@ -32,16 +32,22 @@ class AddImageViewController: UIViewController {
         
         navigationItem.rightBarButtonItems = [ trashButton, addCameraButton ] // 네비게이션 버튼2개 배열로 할당
         
-      
-        
-        
+        // 앨범이미지 Touch -> 앨범
         let addImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(moveAlbumTapped))
         addImageView.albumImageView.addGestureRecognizer(addImageTapGesture)
         addImageView.albumImageView.isUserInteractionEnabled = true
-        
         addImageView.setImage(nil)
         recognizerText(image: addImageView.imageView.image)
         
+        // 스마트출제 버튼
+        addImageView.button.addTarget(self, action: #selector(smartButtonTapped(_:)), for: .touchUpInside) // 스마트출제 버튼
+        
+    }
+    
+    @IBAction func smartButtonTapped(_ sender: UIButton) {
+        print("ㅇㅇ")
+        let nextVC = UserTestViewController()
+        navigationController?.pushViewController(nextVC, animated: true)
     }
     
     // MARK: Visision - Image -> Text
@@ -169,18 +175,6 @@ class AddImageViewController: UIViewController {
         addImageView.textView.text = nil
     }
     
-    
-    open override var shouldAutorotate: Bool {
-        return false
-    }
-    
-    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
-    
-    open override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        return .portrait
-    }
 }
 
 

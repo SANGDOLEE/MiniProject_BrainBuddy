@@ -134,8 +134,8 @@ class AddImageView : UIView{
             textView.layer.borderWidth = 1.0
             textView.layer.borderColor = UIColor.systemGray6.cgColor
             
-            let labelCornerRadius : CGFloat = 30.0
-            textView.layer.cornerRadius = labelCornerRadius
+            let textViewCornerRadius : CGFloat = 30.0
+            textView.layer.cornerRadius = textViewCornerRadius
             textView.layer.masksToBounds = true
         }
         
