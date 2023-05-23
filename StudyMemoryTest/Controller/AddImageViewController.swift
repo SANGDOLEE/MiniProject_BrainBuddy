@@ -21,7 +21,7 @@ class AddImageViewController: UIViewController {
         view.addSubview(addImageView)
         
         // MARK: 네비게이션
-        title = "오늘의 문제집" // 네비게이션 타이틀 제목
+        title = "문제집" // 네비게이션 타이틀 제목
         navigationController?.navigationBar.tintColor = UIColor.black
         
         let addCameraButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(addCameraTapped))
@@ -90,6 +90,9 @@ class AddImageViewController: UIViewController {
         }
         
     }
+    
+    // imageView속 형광펜 추출
+    
     
   
     // 카메라 선택

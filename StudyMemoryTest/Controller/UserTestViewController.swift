@@ -12,13 +12,23 @@ class UserTestViewController: UIViewController {
     
     private var userTestView : UserTestView! // View
     
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "테스트"
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTapped))
+        saveButton.tintColor = .white
+        navigationItem.rightBarButtonItem = saveButton
+        
+        
         userTestView = UserTestView(frame: view.bounds)
         view.addSubview(userTestView)
     }
     
+    @objc func saveTapped(){
+        
+    }
 
     /*
     // MARK: - Navigation
