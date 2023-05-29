@@ -10,10 +10,18 @@ import SnapKit
 
 class UserTestView: UIView {
     
+    let upView: UIView = {
+        let mainView = UIView()
+        mainView.backgroundColor = .systemYellow
+        return mainView
+    }()
+    
     override init(frame: CGRect){
         super.init(frame:frame)
         
         self.backgroundColor = UIColor.tintColor // SuperView 배경색
+        
+        addSubview(upView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -24,6 +32,12 @@ class UserTestView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        upView.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide.snp.topMargin).offset(20)
+            make.width.equalToSuperview()
+            make.height.equalToSuperview().dividedBy(4) // Height = 해상도의 1/3
+            make.left.right.equalToSuperview()
+        }
     }
 }
 

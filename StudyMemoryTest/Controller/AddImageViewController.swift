@@ -17,6 +17,7 @@ class AddImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         addImageView = AddImageView(frame: view.bounds)
         view.addSubview(addImageView)
         
@@ -45,10 +46,23 @@ class AddImageViewController: UIViewController {
     }
     
     @IBAction func smartButtonTapped(_ sender: UIButton) {
-        print("ㅇㅇ")
-        let nextVC = UserTestViewController()
-        navigationController?.pushViewController(nextVC, animated: true)
+        if addImageView.textView.text.isEmpty {
+            addImageView.button.isEnabled = false
+            showPhotoAlert()
+        } else {
+            let nextVC = UserTestViewController()
+            navigationController?.pushViewController(nextVC, animated: true)
+        }
     }
+    func showPhotoAlert() {
+        let alert = UIAlertController(title: "알림", message: "사진을 추가해주세요.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default) { _ in
+            self.addImageView.button.isEnabled = true
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
     
     // MARK: Visision - Image -> Text
     private func recognizerText(image: UIImage?) { // 이미지는 선택사항
@@ -94,7 +108,7 @@ class AddImageViewController: UIViewController {
     // imageView속 형광펜 추출
     
     
-  
+    
     // 카메라 선택
     @objc func addCameraTapped() {
         checkCameraPermissions()
