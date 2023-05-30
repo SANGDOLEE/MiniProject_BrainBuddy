@@ -8,14 +8,15 @@
 import UIKit
 
 class UserTestViewController: UIViewController {
-
     
-    private var userTestView : UserTestView! // View
+    public var userTestView : UserTestView! // View
+    private var addImageView : AddImageView!
     
-  
+    var receivedText: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = "테스트"
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTapped))
         saveButton.tintColor = .white
@@ -24,20 +25,14 @@ class UserTestViewController: UIViewController {
         
         userTestView = UserTestView(frame: view.bounds)
         view.addSubview(userTestView)
+        
+        userTestView.serveTextView.text = receivedText
+        
+        
+        
     }
     
     @objc func saveTapped(){
         
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

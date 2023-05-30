@@ -47,7 +47,7 @@ class AddImageView : UIView{
         let textView = UITextView()
         textView.backgroundColor = .white
         textView.font = UIFont.systemFont(ofSize: 24)
-        textView.text = nil
+        textView.text = ""
         textView.textAlignment = .center
         textView.isEditable = false
         return textView

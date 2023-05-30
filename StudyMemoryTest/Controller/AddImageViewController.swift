@@ -14,10 +14,12 @@ class AddImageViewController: UIViewController {
     
     private var addImageView : AddImageView! // View
     
+    var textTemp : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        
         addImageView = AddImageView(frame: view.bounds)
         view.addSubview(addImageView)
         
@@ -51,9 +53,11 @@ class AddImageViewController: UIViewController {
             showPhotoAlert()
         } else {
             let nextVC = UserTestViewController()
+            nextVC.receivedText = self.textTemp
             navigationController?.pushViewController(nextVC, animated: true)
         }
     }
+    
     func showPhotoAlert() {
         let alert = UIAlertController(title: "알림", message: "사진을 추가해주세요.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default) { _ in
@@ -86,7 +90,9 @@ class AddImageViewController: UIViewController {
             
             DispatchQueue.main.async {
                 self?.addImageView.setTextViewText(text)
+                self?.textTemp = text
             }
+            
         }
         
         // 텍스트 감지 언어 -> 한국어, 영어
@@ -102,11 +108,7 @@ class AddImageViewController: UIViewController {
         catch {
             addImageView.setTextViewText("\(error)")
         }
-        
     }
-    
-    // imageView속 형광펜 추출
-    
     
     
     // 카메라 선택
