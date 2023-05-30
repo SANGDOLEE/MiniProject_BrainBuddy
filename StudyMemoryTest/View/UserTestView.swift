@@ -19,7 +19,7 @@ class UserTestView: UIView {
     let serveTextView: UITextView = {
         let serveTextView = UITextView()
         serveTextView.backgroundColor = .systemYellow
-        serveTextView.font = UIFont.systemFont(ofSize: 24)
+        serveTextView.font = UIFont.systemFont(ofSize: 20)
         serveTextView.text = nil
         serveTextView.textAlignment = .center
         serveTextView.isEditable = false
@@ -29,7 +29,7 @@ class UserTestView: UIView {
     override init(frame: CGRect){
         super.init(frame:frame)
         
-        self.backgroundColor = UIColor.tintColor // SuperView 배경색
+        self.backgroundColor = UIColor.white // SuperView 배경색
         
         addSubview(upView)
         upView.addSubview(serveTextView)
@@ -63,10 +63,12 @@ class UserTestView: UIView {
             make.bottom.equalToSuperview().inset(20)
             
             serveTextView.layer.borderWidth = 1.0
-            serveTextView.layer.borderColor = UIColor.systemGray6.cgColor
+            serveTextView.layer.borderColor = UIColor.systemYellow.cgColor
             
             serveTextView.layer.cornerRadius = 30
             serveTextView.layer.masksToBounds = true
+            
+            serveTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
 }
