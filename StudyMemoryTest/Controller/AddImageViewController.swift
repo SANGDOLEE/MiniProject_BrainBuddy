@@ -48,13 +48,18 @@ class AddImageViewController: UIViewController {
     }
     
     @IBAction func smartButtonTapped(_ sender: UIButton) {
-        if addImageView.textView.text.isEmpty {
+        if addImageView.imageView.image != nil { // 사진이 있는데
+            if !addImageView.textView.text.isEmpty { // 텍스트도 있는데
+                let nextVC = UserTestViewController()
+                nextVC.receivedText = self.textTemp
+                navigationController?.pushViewController(nextVC, animated: true)
+            } else { // 사진은 있는데, 변환된 텍스트는 없는 사진이면
+                addImageView.button.isEnabled = false
+                showTextPhotoAlert()
+            }
+        } else {
             addImageView.button.isEnabled = false
             showPhotoAlert()
-        } else {
-            let nextVC = UserTestViewController()
-            nextVC.receivedText = self.textTemp
-            navigationController?.pushViewController(nextVC, animated: true)
         }
     }
     
@@ -64,7 +69,15 @@ class AddImageViewController: UIViewController {
             self.addImageView.button.isEnabled = true
         }
         alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
+        present(alert, animated: true)
+    }
+    func showTextPhotoAlert() {
+        let alert = UIAlertController(title: "알림", message: "해당 사진은 텍스트로 변환될 수 없습니다.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default) { _ in
+            self.addImageView.button.isEnabled = true
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
     
     
@@ -192,6 +205,9 @@ class AddImageViewController: UIViewController {
     @objc func trashTapped() {
         addImageView.imageView.image = nil
         addImageView.textView.text = nil
+        
+        addImageView.photoLabel.isHidden = false // 사진이 선택되면 Label 숨김
+        addImageView.albumImageView.isHidden = false
     }
     
 }
