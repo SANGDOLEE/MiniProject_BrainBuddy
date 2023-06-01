@@ -26,6 +26,14 @@ class UserTestView: UIView {
         return serveTextView
     }()
     
+    ///
+    
+    let bottomView : UIView = {
+        let subView = UIView()
+        subView.backgroundColor = .systemYellow
+        return subView
+    }()
+    
     override init(frame: CGRect){
         super.init(frame:frame)
         
@@ -33,6 +41,7 @@ class UserTestView: UIView {
         
         addSubview(upView)
         upView.addSubview(serveTextView)
+        addSubview(bottomView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -69,6 +78,17 @@ class UserTestView: UIView {
             serveTextView.layer.masksToBounds = true
             
             serveTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+        
+        bottomView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(upView.snp.bottomMargin).offset(20)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(20)
+            
+            bottomView.layer.cornerRadius = 30
+            bottomView.layer.masksToBounds = true
         }
     }
 }
