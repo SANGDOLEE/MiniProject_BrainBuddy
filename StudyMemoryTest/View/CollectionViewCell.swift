@@ -14,7 +14,7 @@ class CollectionViewCell: UICollectionViewCell {
         
         self.layer.cornerRadius = 30
         self.layer.masksToBounds = true
-        self.backgroundColor = .white
+        self.backgroundColor = .systemRed
         
     }
     
