@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import PencilKit
 
 class UserTestView: UIView {
     
@@ -34,6 +35,12 @@ class UserTestView: UIView {
         return subView
     }()
     
+    let canvasView : PKCanvasView = {
+        let canvasView = PKCanvasView()
+        
+        return canvasView
+    }()
+    
     override init(frame: CGRect){
         super.init(frame:frame)
         
@@ -42,6 +49,7 @@ class UserTestView: UIView {
         addSubview(upView)
         upView.addSubview(serveTextView)
         addSubview(bottomView)
+        bottomView.addSubview(canvasView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -89,6 +97,13 @@ class UserTestView: UIView {
             
             bottomView.layer.cornerRadius = 30
             bottomView.layer.masksToBounds = true
+        }
+        
+        canvasView.snp.makeConstraints { make in
+            make.top.equalTo(bottomView.snp.top).offset(20)
+            make.left.equalTo(bottomView.snp.left).offset(20)
+            make.right.equalTo(bottomView.snp.right).offset(-20)
+            make.bottom.equalTo(bottomView.snp.bottom).offset(-20)
         }
     }
 }
