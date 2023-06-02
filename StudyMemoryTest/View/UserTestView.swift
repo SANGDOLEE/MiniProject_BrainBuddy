@@ -11,6 +11,8 @@ import PencilKit
 
 class UserTestView: UIView {
     
+    let size = UIScreen.main.bounds.width * 0.02 // 현재 시뮬레이터의 화면 너비
+    
     /// 텍스트 뷰
     let upView: UIView = {
         let mainView = UIView()
@@ -42,23 +44,39 @@ class UserTestView: UIView {
         return canvasView
     }()
     
-    
-    /// 버튼
-    let undoButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Undo", for:.normal)
-        button.backgroundColor = UIColor.tintColor
-        button.setTitleColor(UIColor.white, for: .normal)
-       return button
+    // 스택뷰 / 이미지 버튼 4개
+    let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.distribution = .fillEqually
+        return stackView
     }()
     
-    let redoButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Redo", for: .normal)
-        button.backgroundColor = UIColor.tintColor
-        button.setTitleColor(UIColor.white, for: .normal)
-        return button
+    let trashImageButton : UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "trash")
+        return imageView
     }()
+    
+    let undoImageButton : UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "undo")
+        return imageView
+    }()
+    
+    let redoImageButton : UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "redo")
+        return imageView
+    }()
+    
+    let palatteImageButton : UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "palette")
+        return imageView
+    }()
+    
     
     
     override init(frame: CGRect){
@@ -70,8 +88,12 @@ class UserTestView: UIView {
         upView.addSubview(serveTextView)
         addSubview(bottomView)
         bottomView.addSubview(canvasView)
-        bottomView.addSubview(undoButton)
-        bottomView.addSubview(redoButton)
+        
+        bottomView.addSubview(stackView)
+        stackView.addArrangedSubview(trashImageButton)
+        stackView.addArrangedSubview(undoImageButton)
+        stackView.addArrangedSubview(redoImageButton)
+        stackView.addArrangedSubview(palatteImageButton)
         
     }
     
@@ -93,7 +115,6 @@ class UserTestView: UIView {
             upView.layer.cornerRadius = 30
             upView.layer.masksToBounds = true
         }
-        
         
         serveTextView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -130,23 +151,20 @@ class UserTestView: UIView {
             
             canvasView.layer.cornerRadius = 30
             bottomView.layer.masksToBounds = true
-        
-        }
-        
-        undoButton.snp.makeConstraints { make in
-            make.top.equalTo(canvasView.snp.bottom).offset(5)
-            make.left.equalTo(bottomView.snp.left).offset(100)
-            make.bottom.equalTo(bottomView.snp.bottom).inset(-5)
             
         }
         
-        redoButton.snp.makeConstraints { make in
-            make.top.equalTo(canvasView.snp.bottom).offset(5)
-            make.right.equalTo(bottomView.snp.right).offset(-100)
-            make.bottom.equalTo(bottomView.snp.bottom).inset(-5)
+        stackView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(canvasView.snp.bottom).offset(10)
+            make.bottom.equalToSuperview().offset(-10) // offset과 inset의 차이
+            make.width.equalToSuperview()
+            make.height.equalTo(30)
+            
         }
         
+        
+        
     }
-   
 }
 

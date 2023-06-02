@@ -37,8 +37,7 @@ class UserTestViewController: UIViewController {
         
         userTestView.serveTextView.text = receivedText // image에서 변환된 text 전달 받기
         
-        userTestView.undoButton.addTarget(self, action: #selector(undoButtonTapped), for: .touchUpInside)
-        userTestView.redoButton.addTarget(self, action: #selector(redoButtonTapped), for: .touchUpInside)
+     
         
     }
     
@@ -51,11 +50,11 @@ class UserTestViewController: UIViewController {
     }
     
     @objc private func undoButtonTapped() {
-        userTestView.canvasView.undoManager?.undo()
+      
     }
     
     @objc private func redoButtonTapped() {
-        userTestView.canvasView.undoManager?.redo()
+        
     }
     
     @objc func saveTapped(){
