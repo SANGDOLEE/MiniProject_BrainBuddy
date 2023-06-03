@@ -86,7 +86,7 @@ class UserTestView: UIView {
     override init(frame: CGRect){
         super.init(frame:frame)
         
-        setGradient(color1: .systemBlue, color2: .white) // 배경색상
+        backgroundColorSetGradient(color1: .tintColor, color2: .white) // 배경색상
         
         addSubview(upView)
         upView.addSubview(serveTextView)
@@ -111,10 +111,10 @@ class UserTestView: UIView {
         
         upView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(safeAreaLayoutGuide.snp.topMargin).offset(20)
+            make.top.equalTo(safeAreaLayoutGuide.snp.topMargin).offset(15)
             make.height.equalToSuperview().dividedBy(5) // Height = 해상도의 1/4
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().inset(20)
+            make.left.equalToSuperview().offset(15)
+            make.right.equalToSuperview().inset(15)
             
             upView.layer.cornerRadius = 30
             upView.layer.masksToBounds = true
@@ -139,8 +139,8 @@ class UserTestView: UIView {
         bottomView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(upView.snp.bottomMargin).offset(20)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().inset(20)
+            make.left.equalToSuperview().offset(15)
+            make.right.equalToSuperview().inset(15)
             make.bottom.equalToSuperview().inset(20)
             
             bottomView.layer.cornerRadius = 30
@@ -148,10 +148,10 @@ class UserTestView: UIView {
         }
         
         canvasView.snp.makeConstraints { make in
-            make.top.equalTo(bottomView.snp.top).offset(1)
-            make.left.equalTo(bottomView.snp.left).offset(1)
-            make.right.equalTo(bottomView.snp.right).offset(-1)
-            make.bottom.equalTo(bottomView.snp.bottom).offset(-80)
+            make.top.equalTo(bottomView.snp.top).offset(0)
+            make.left.equalTo(bottomView.snp.left).offset(0)
+            make.right.equalTo(bottomView.snp.right).offset(0)
+            make.bottom.equalTo(bottomView.snp.bottom).offset(-60)
             
             canvasView.layer.cornerRadius = 30
             bottomView.layer.masksToBounds = true
@@ -168,7 +168,7 @@ class UserTestView: UIView {
         }
     }
     
-    func setGradient(color1:UIColor, color2: UIColor) {
+    func backgroundColorSetGradient(color1:UIColor, color2: UIColor) {
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.colors = [color1.cgColor, color2.cgColor]
         gradient.locations = [ 0.0, 1.0]
