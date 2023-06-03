@@ -71,7 +71,7 @@ class UserTestView: UIView {
         return imageView
     }()
     
-    let palatteImageButton : UIImageView = {
+    let paletteImageButton : UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "palette")
         return imageView
@@ -93,7 +93,7 @@ class UserTestView: UIView {
         stackView.addArrangedSubview(trashImageButton)
         stackView.addArrangedSubview(undoImageButton)
         stackView.addArrangedSubview(redoImageButton)
-        stackView.addArrangedSubview(palatteImageButton)
+        stackView.addArrangedSubview(paletteImageButton)
         
     }
     
