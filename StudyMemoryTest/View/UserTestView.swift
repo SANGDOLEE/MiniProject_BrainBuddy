@@ -5,13 +5,13 @@
 //  Created by 이상도 on 2023/05/23.
 //
 
+
 import UIKit
 import SnapKit
 import PencilKit
 
 class UserTestView: UIView {
     
-    let size = UIScreen.main.bounds.width * 0.02 // 현재 시뮬레이터의 화면 너비
     
     /// 텍스트 뷰
     let upView: UIView = {
@@ -48,7 +48,7 @@ class UserTestView: UIView {
     let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 10
+        stackView.spacing = 5
         stackView.distribution = .fillEqually
         return stackView
     }()
@@ -56,24 +56,28 @@ class UserTestView: UIView {
     let trashImageButton : UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "trash")
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     let undoImageButton : UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "undo")
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     let redoImageButton : UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "redo")
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     let paletteImageButton : UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "palette")
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -147,7 +151,7 @@ class UserTestView: UIView {
             make.top.equalTo(bottomView.snp.top).offset(10)
             make.left.equalTo(bottomView.snp.left).offset(10)
             make.right.equalTo(bottomView.snp.right).offset(-10)
-            make.bottom.equalTo(bottomView.snp.bottom).offset(-100)
+            make.bottom.equalTo(bottomView.snp.bottom).offset(-80)
             
             canvasView.layer.cornerRadius = 30
             bottomView.layer.masksToBounds = true
@@ -167,4 +171,5 @@ class UserTestView: UIView {
         
     }
 }
+
 
