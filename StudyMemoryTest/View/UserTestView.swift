@@ -44,6 +44,14 @@ class UserTestView: UIView {
         return canvasView
     }()
     
+    let drawingLabel : UILabel = {
+        let label = UILabel()
+        label.text = "Drawing Here !"
+        label.textColor = .systemGray5
+        label.font = UIFont.systemFont(ofSize: 32)
+        return label
+    }()
+    
     // 스택뷰 / 이미지 버튼 4개
     let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -92,6 +100,7 @@ class UserTestView: UIView {
         upView.addSubview(serveTextView)
         addSubview(bottomView)
         bottomView.addSubview(canvasView)
+        canvasView.addSubview(drawingLabel)
         
         bottomView.addSubview(stackView)
         stackView.addArrangedSubview(trashImageButton)
@@ -156,6 +165,10 @@ class UserTestView: UIView {
             canvasView.layer.cornerRadius = 30
             bottomView.layer.masksToBounds = true
             
+        }
+        
+        drawingLabel.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
         }
         
         stackView.snp.makeConstraints { make in

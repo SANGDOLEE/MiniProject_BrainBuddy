@@ -38,7 +38,8 @@ class UserTestViewController: UIViewController {
         
         userTestView.serveTextView.text = receivedText // image에서 변환된 text 전달 받기
         
-     
+    
+        
         /// trash undo redo palette
         let undoTapGesture = UITapGestureRecognizer(target: self, action: #selector(undoTapped))
         userTestView.undoImageButton.addGestureRecognizer(undoTapGesture)
@@ -56,6 +57,8 @@ class UserTestViewController: UIViewController {
         userTestView.paletteImageButton.addGestureRecognizer(paletteTapGesture)
         userTestView.paletteImageButton.isUserInteractionEnabled = true
         
+        
+        userTestView.canvasView.drawingGestureRecognizer.addTarget(self, action: #selector(drawingStarted))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,6 +69,7 @@ class UserTestViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
+  
     
     @objc private func trashTapped() {
         clearCanvas()
@@ -84,6 +88,10 @@ class UserTestViewController: UIViewController {
     
     @objc func paletteTapped() {
        
+    }
+    
+    @objc func drawingStarted() {
+        userTestView.drawingLabel.isHidden = true
     }
     
     @objc func saveTapped(){
