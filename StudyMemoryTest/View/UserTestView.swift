@@ -86,7 +86,7 @@ class UserTestView: UIView {
     override init(frame: CGRect){
         super.init(frame:frame)
         
-        self.backgroundColor = UIColor.white // SuperView 배경색
+        setGradient(color1: .systemBlue, color2: .white) // 배경색상
         
         addSubview(upView)
         upView.addSubview(serveTextView)
@@ -148,9 +148,9 @@ class UserTestView: UIView {
         }
         
         canvasView.snp.makeConstraints { make in
-            make.top.equalTo(bottomView.snp.top).offset(10)
-            make.left.equalTo(bottomView.snp.left).offset(10)
-            make.right.equalTo(bottomView.snp.right).offset(-10)
+            make.top.equalTo(bottomView.snp.top).offset(1)
+            make.left.equalTo(bottomView.snp.left).offset(1)
+            make.right.equalTo(bottomView.snp.right).offset(-1)
             make.bottom.equalTo(bottomView.snp.bottom).offset(-80)
             
             canvasView.layer.cornerRadius = 30
@@ -166,9 +166,16 @@ class UserTestView: UIView {
             make.height.equalTo(30)
             
         }
-        
-        
-        
+    }
+    
+    func setGradient(color1:UIColor, color2: UIColor) {
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.colors = [color1.cgColor, color2.cgColor]
+        gradient.locations = [ 0.0, 1.0]
+        gradient.startPoint = CGPoint(x:0.5, y:1.0)
+        gradient.endPoint = CGPoint(x:0.5, y:0.0)
+        gradient.frame = bounds
+        layer.addSublayer(gradient)
     }
 }
 
