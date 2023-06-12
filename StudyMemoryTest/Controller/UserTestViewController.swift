@@ -75,39 +75,51 @@ class UserTestViewController: UIViewController {
     // 원본 text -> test용 text로 랜덤 인덱스 변환
     func replaceCharacter(text: String) -> String {
         let words = text.components(separatedBy: " ")
-            let numberOfWordsToReplace = Int(ceil(Double(words.count) / 3.0))
-            
-            var modifiedWords = words
-            var replacedWordIndices = Set<Int>()
-            
-            while replacedWordIndices.count < numberOfWordsToReplace {
-                let randomIndex = Int.random(in: 0..<words.count)
-                
-                let word = words[randomIndex]
-                if !isSpecialCharacter(word) {
-                    replacedWordIndices.insert(randomIndex)
-                }
-            }
-            
-            var problemNumber = 1
-            
-            let sortedIndices = replacedWordIndices.sorted(by: <)
-            
-            for index in sortedIndices {
-                let replacedWord = words[index]
-                if replacedWord.count > 2 {
-                    let replacedWordWithNumber = "(\(problemNumber))\(String(repeating: "_", count: replacedWord.count - 2))"
-                    modifiedWords[index] = replacedWordWithNumber
-                    problemNumber += 1
-                }
-            }
-            
-            return modifiedWords.joined(separator: " ")
+           let numberOfWordsToReplace = Int(ceil(Double(words.count) / 3.0))
+           
+           var modifiedWords = words
+           var replacedWordIndices = Set<Int>()
+           
+           while replacedWordIndices.count < numberOfWordsToReplace {
+               let randomIndex = Int.random(in: 0..<words.count)
+               
+               let word = words[randomIndex]
+               if !isSpecialCharacter(word) && !isConsecutiveWordsReplaced(randomIndex, replacedWordIndices) {
+                   replacedWordIndices.insert(randomIndex)
+               }
+           }
+           
+           var problemNumber = 1
+           
+           let sortedIndices = replacedWordIndices.sorted(by: <)
+           
+           for index in sortedIndices {
+               let replacedWord = words[index]
+               let replacedWordCount = replacedWord.count
+               if replacedWordCount > 2 {
+                   let numberOfUnderscores = replacedWordCount - 2
+                   let underscores = String(repeating: "_", count: numberOfUnderscores)
+                   let replacedWordWithNumber = "(\(problemNumber))\(underscores)"
+                   modifiedWords[index] = replacedWordWithNumber
+                   problemNumber += 1
+               }
+           }
+           
+           return modifiedWords.joined(separator: " ")
     }
 
     func isSpecialCharacter(_ word: String) -> Bool {
         let specialCharacters = CharacterSet.punctuationCharacters.subtracting(CharacterSet(charactersIn: "_"))
         return word.rangeOfCharacter(from: specialCharacters) != nil
+    }
+    func isConsecutiveWordsReplaced(_ currentIndex: Int, _ replacedIndices: Set<Int>) -> Bool {
+        if currentIndex > 0 && replacedIndices.contains(currentIndex - 1) {
+            return true
+        }
+        if currentIndex < replacedIndices.count - 1 && replacedIndices.contains(currentIndex + 1) {
+            return true
+        }
+        return false
     }
     
     
