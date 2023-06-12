@@ -57,8 +57,11 @@ class UserTestViewController: UIViewController {
         userTestView.paletteImageButton.addGestureRecognizer(paletteTapGesture)
         userTestView.paletteImageButton.isUserInteractionEnabled = true
         
-        
         userTestView.canvasView.drawingGestureRecognizer.addTarget(self, action: #selector(drawingStarted))
+        
+        setupCanvasView()
+        setUpTool()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -87,13 +90,25 @@ class UserTestViewController: UIViewController {
     }
     
     @objc func paletteTapped() {
-       
+        print("팔레트 호추")
     }
     
     @objc func drawingStarted() {
         userTestView.drawingLabel.isHidden = true
     }
     
+    // Palette
+    private func setupCanvasView() {
+        userTestView.canvasView.allowsFingerDrawing = false
+    }
+    private func setUpTool() {
+        if let window = UIApplication.shared.windows.first, let toolPicker =
+            PKToolPicker.shared(for: window) {
+            toolPicker.addObserver(userTestView.canvasView)
+            toolPicker.setVisible(true, forFirstResponder: userTestView.canvasView)
+            userTestView.canvasView.becomeFirstResponder()
+        }
+    }
     @objc func saveTapped(){
         
     }
