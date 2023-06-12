@@ -36,11 +36,11 @@ class UserTestViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = userTestAppearance
         
         
-        userTestView.serveTextView.text = receivedText // image에서 변환된 text 전달 받기
+        userTestView.serveTextView.text = replaceCharacter(text: receivedText!) // image에서 변환된 text 전달 받기
         
     
         
-        /// trash undo redo palette
+        // Trash Undo Redo Palette
         let undoTapGesture = UITapGestureRecognizer(target: self, action: #selector(undoTapped))
         userTestView.undoImageButton.addGestureRecognizer(undoTapGesture)
         userTestView.undoImageButton.isUserInteractionEnabled = true
@@ -59,6 +59,7 @@ class UserTestViewController: UIViewController {
         
         userTestView.canvasView.drawingGestureRecognizer.addTarget(self, action: #selector(drawingStarted))
         
+        // PKToolPicker : Palette
         setupCanvasView()
         setUpTool()
         
@@ -71,8 +72,48 @@ class UserTestViewController: UIViewController {
         appearance.shadowColor = .none
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
+    // 원본 text -> test용 text로 랜덤 인덱스 변환
+    func replaceCharacter(text: String) -> String {
+        let words = text.components(separatedBy: " ")
+            let numberOfWordsToReplace = Int(ceil(Double(words.count) / 3.0))
+            
+            var modifiedWords = words
+            var replacedWordIndices = Set<Int>()
+            
+            while replacedWordIndices.count < numberOfWordsToReplace {
+                let randomIndex = Int.random(in: 0..<words.count)
+                
+                let word = words[randomIndex]
+                if !isSpecialCharacter(word) {
+                    replacedWordIndices.insert(randomIndex)
+                }
+            }
+            
+            var problemNumber = 1
+            
+            let sortedIndices = replacedWordIndices.sorted(by: <)
+            
+            for index in sortedIndices {
+                let replacedWord = words[index]
+                if replacedWord.count > 2 {
+                    let replacedWordWithNumber = "(\(problemNumber))\(String(repeating: "_", count: replacedWord.count - 2))"
+                    modifiedWords[index] = replacedWordWithNumber
+                    problemNumber += 1
+                }
+            }
+            
+            return modifiedWords.joined(separator: " ")
+    }
+
+    func isSpecialCharacter(_ word: String) -> Bool {
+        let specialCharacters = CharacterSet.punctuationCharacters.subtracting(CharacterSet(charactersIn: "_"))
+        return word.rangeOfCharacter(from: specialCharacters) != nil
+    }
     
-  
+    
+    @objc func drawingStarted() {
+        userTestView.drawingLabel.isHidden = true
+    }
     
     @objc private func trashTapped() {
         clearCanvas()
@@ -89,15 +130,11 @@ class UserTestViewController: UIViewController {
         userTestView.canvasView.undoManager?.redo()
     }
     
+    // PKToolPicker : Palette
     @objc func paletteTapped() {
-        print("팔레트 호추")
+        print("팔레트 호출")
     }
     
-    @objc func drawingStarted() {
-        userTestView.drawingLabel.isHidden = true
-    }
-    
-    // Palette
     private func setupCanvasView() {
         userTestView.canvasView.allowsFingerDrawing = false
     }
@@ -109,6 +146,8 @@ class UserTestViewController: UIViewController {
             userTestView.canvasView.becomeFirstResponder()
         }
     }
+    
+    // CollectionView 저장
     @objc func saveTapped(){
         
     }

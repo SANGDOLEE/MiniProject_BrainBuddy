@@ -14,7 +14,7 @@ class AddImageViewController: UIViewController {
     
     private var addImageView : AddImageView! // View
     
-    var textTemp : String?
+    var textTemp : String? // Image -> Text 변환되어 임시저장 될 text변수
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,6 +122,7 @@ class AddImageViewController: UIViewController {
             addImageView.setTextViewText("\(error)")
         }
     }
+    
     
     
     // 카메라 선택
