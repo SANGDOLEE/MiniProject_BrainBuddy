@@ -82,12 +82,14 @@ class UserTestView: UIView {
         return imageView
     }()
     
+    /*
     let paletteImageButton : UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "palette")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
+     */
     
     
     
@@ -106,7 +108,7 @@ class UserTestView: UIView {
         stackView.addArrangedSubview(trashImageButton)
         stackView.addArrangedSubview(undoImageButton)
         stackView.addArrangedSubview(redoImageButton)
-        stackView.addArrangedSubview(paletteImageButton)
+        // stackView.addArrangedSubview(paletteImageButton)
         
     }
     

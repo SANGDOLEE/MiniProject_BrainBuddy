@@ -14,6 +14,10 @@ class UserTestViewController: UIViewController {
     
     
     var receivedText: String? // 전달받는 텍스트 변수
+    var originalText: String? // 정답으로 사용할 변수
+    var pasteReceovedText: String = ""
+    
+    var answerButton: UIBarButtonItem! // 네비게이션 버튼
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +27,12 @@ class UserTestViewController: UIViewController {
         
         /// 네비게이션
         title = "테스트"
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTapped))
+        let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveTapped))
         saveButton.tintColor = .black
-        navigationItem.rightBarButtonItem = saveButton
+    
+        answerButton = UIBarButtonItem(title: "정답확인", style: .plain, target: self, action: #selector(answerTapped))
+        answerButton.tintColor = .black
+        navigationItem.rightBarButtonItems = [ saveButton, answerButton ] // 네비게이션 버튼2개 배열로 할당
         
         let userTestAppearance = UINavigationBarAppearance()
         userTestAppearance.backgroundColor = .white
@@ -37,7 +44,8 @@ class UserTestViewController: UIViewController {
         
         
         userTestView.serveTextView.text = replaceCharacter(text: receivedText!) // image에서 변환된 text 전달 받기
-        
+        pasteReceovedText = userTestView.serveTextView.text
+        originalText = receivedText
     
         
         // Trash Undo Redo Palette
@@ -53,9 +61,11 @@ class UserTestViewController: UIViewController {
         userTestView.trashImageButton.addGestureRecognizer(trashTapGesture)
         userTestView.trashImageButton.isUserInteractionEnabled = true
         
+        /*
         let paletteTapGesture = UITapGestureRecognizer(target: self, action: #selector(paletteTapped))
         userTestView.paletteImageButton.addGestureRecognizer(paletteTapGesture)
         userTestView.paletteImageButton.isUserInteractionEnabled = true
+        */
         
         userTestView.canvasView.drawingGestureRecognizer.addTarget(self, action: #selector(drawingStarted))
         
@@ -161,6 +171,15 @@ class UserTestViewController: UIViewController {
         }
     }
     
+    @objc func answerTapped() {
+        if answerButton.title == "정답확인" {
+            userTestView.serveTextView.text = originalText
+            answerButton.title = "확인완료"
+        } else {
+            userTestView.serveTextView.text = pasteReceovedText
+            answerButton.title = "정답확인"
+        }
+    }
     // CollectionView 저장
     @objc func saveTapped(){
         
