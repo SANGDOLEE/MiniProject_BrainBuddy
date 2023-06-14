@@ -56,7 +56,7 @@ class AddImageView : UIView{
     let button: UIButton = {
         let button = UIButton()
         button.setTitle("스마트 출제", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.backgroundColor = UIColor.tintColor
         button.setTitleColor(UIColor.white, for: .normal)
         return button
