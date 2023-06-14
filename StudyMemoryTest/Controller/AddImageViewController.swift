@@ -25,7 +25,8 @@ class AddImageViewController: UIViewController {
         
         // MARK: 네비게이션
         title = "문제집" // 네비게이션 타이틀 제목
-        navigationController?.navigationBar.tintColor = UIColor.black
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
         
         let addCameraButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(addCameraTapped))
         addCameraButton.tintColor = .white

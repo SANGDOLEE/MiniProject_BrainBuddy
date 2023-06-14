@@ -12,7 +12,6 @@ import PencilKit
 
 class UserTestView: UIView {
     
-    
     /// 텍스트 뷰
     let upView: UIView = {
         let mainView = UIView()
@@ -96,7 +95,8 @@ class UserTestView: UIView {
     override init(frame: CGRect){
         super.init(frame:frame)
         
-        backgroundColorSetGradient(color1: .tintColor, color2: .white) // 배경색상
+        //backgroundColorSetGradient(color1: .white, color2: .tintColor) // 배경색상
+        backgroundColor = .tintColor
         
         addSubview(upView)
         upView.addSubview(serveTextView)
@@ -183,6 +183,8 @@ class UserTestView: UIView {
         }
     }
     
+    // 네비게이션 배경 
+    /*
     func backgroundColorSetGradient(color1:UIColor, color2: UIColor) {
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.colors = [color1.cgColor, color2.cgColor]
@@ -192,6 +194,7 @@ class UserTestView: UIView {
         gradient.frame = bounds
         layer.addSublayer(gradient)
     }
+     */
 }
 
 

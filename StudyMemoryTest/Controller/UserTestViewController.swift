@@ -28,17 +28,26 @@ class UserTestViewController: UIViewController {
         /// 네비게이션
         title = "테스트"
         let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveTapped))
-        saveButton.tintColor = .black
+        saveButton.tintColor = .white
     
         answerButton = UIBarButtonItem(title: "정답확인", style: .plain, target: self, action: #selector(answerTapped))
-        answerButton.tintColor = .black
+        answerButton.tintColor = .white
         navigationItem.rightBarButtonItems = [ saveButton, answerButton ] // 네비게이션 버튼2개 배열로 할당
         
         let userTestAppearance = UINavigationBarAppearance()
-        userTestAppearance.backgroundColor = .white
-        userTestAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
-        userTestAppearance.shadowColor = .clear
-        //navigationController?.navigationBar.tintColor = .white
+        userTestAppearance.backgroundColor = .tintColor
+        userTestAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        userTestAppearance.shadowColor = .none
+
+        let backButtonAppearance = UIBarButtonItemAppearance()
+        backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
+        userTestAppearance.backButtonAppearance = backButtonAppearance
+
+        let backButtonImage = UIImage(systemName: "chevron.left")
+        userTestAppearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
+
+        
+        navigationController?.navigationBar.tintColor = .tintColor
         navigationController?.navigationBar.scrollEdgeAppearance = userTestAppearance
         navigationController?.navigationBar.standardAppearance = userTestAppearance
         
