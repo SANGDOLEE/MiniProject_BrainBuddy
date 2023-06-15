@@ -27,6 +27,12 @@ class AddImageViewController: UIViewController {
         title = "문제집" // 네비게이션 타이틀 제목
         navigationController?.navigationBar.tintColor = UIColor.white
         
+        // 이전으로 돌아가는 버튼 설정
+        let backButton = UIBarButtonItem()
+        backButton.title = ""
+        backButton.tintColor = UIColor.white
+        navigationItem.backBarButtonItem = backButton
+        
         
         let addCameraButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(addCameraTapped))
         addCameraButton.tintColor = .white
@@ -49,6 +55,8 @@ class AddImageViewController: UIViewController {
     }
     
     @IBAction func smartButtonTapped(_ sender: UIButton) {
+        print("스마트 출제 터치됨")
+        
         if addImageView.imageView.image != nil { // 사진이 있는데
             if !addImageView.textView.text.isEmpty { // 텍스트도 있는데
                 let nextVC = UserTestViewController()
@@ -111,7 +119,7 @@ class AddImageViewController: UIViewController {
         
         // 텍스트 감지 언어 -> 한국어, 영어
         request.recognitionLevel = .accurate
-        request.recognitionLanguages = ["ko","en"]
+        request.recognitionLanguages = ["ko","en","zh-Hans","ja"]
         request.usesLanguageCorrection = true
         request.revision = VNRecognizeTextRequestRevision3
         

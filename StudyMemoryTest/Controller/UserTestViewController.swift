@@ -165,6 +165,7 @@ class UserTestViewController: UIViewController {
     }
     func clearCanvas(){
         userTestView.canvasView.drawing = PKDrawing()
+        userTestView.drawingLabel.isHidden = false
     }
     
     @objc private func undoTapped() {

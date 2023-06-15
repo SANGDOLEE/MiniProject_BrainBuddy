@@ -33,19 +33,18 @@ class UserTestView: UIView {
     
     let bottomView : UIView = {
         let subView = UIView()
-        subView.backgroundColor = .systemYellow
+        subView.backgroundColor = .white
         return subView
     }()
     
     let canvasView : PKCanvasView = {
         let canvasView = PKCanvasView()
-        
         return canvasView
     }()
     
     let drawingLabel : UILabel = {
         let label = UILabel()
-        label.text = "Drawing Here !"
+        label.text = "Drawing Here"
         label.textColor = .systemGray5
         label.font = UIFont.systemFont(ofSize: 32)
         return label
@@ -133,10 +132,10 @@ class UserTestView: UIView {
         
         serveTextView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(10)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
-            make.bottom.equalToSuperview().inset(20)
+            make.top.equalToSuperview().offset(5)
+            make.left.equalToSuperview().offset(10)
+            make.right.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview().inset(5)
             
             serveTextView.layer.borderWidth = 1.0
             serveTextView.layer.borderColor = UIColor.systemYellow.cgColor
@@ -150,12 +149,14 @@ class UserTestView: UIView {
         bottomView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(upView.snp.bottomMargin).offset(20)
-            make.left.equalToSuperview().offset(15)
-            make.right.equalToSuperview().inset(15)
-            make.bottom.equalToSuperview().inset(20)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.bottom.equalToSuperview()
             
             bottomView.layer.cornerRadius = 30
+            bottomView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
             bottomView.layer.masksToBounds = true
+            
         }
         
         canvasView.snp.makeConstraints { make in

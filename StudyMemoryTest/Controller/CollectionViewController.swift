@@ -25,6 +25,12 @@ class CollectionViewController: UIViewController {
         // MARK: 네비게이션
         title = "오늘의 암기" // 네비게이션 타이틀 제목
         
+        // 이전으로 돌아가는 버튼 설정
+        let backButton = UIBarButtonItem()
+        backButton.title = ""
+        backButton.tintColor = UIColor.white
+        navigationItem.backBarButtonItem = backButton
+        
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         addButton.tintColor = .black
         navigationItem.rightBarButtonItem = addButton
@@ -38,7 +44,7 @@ class CollectionViewController: UIViewController {
         //navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
-      
+        
     }
     
     // 문제집 추가
