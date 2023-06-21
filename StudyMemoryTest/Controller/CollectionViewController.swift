@@ -53,12 +53,8 @@ class CollectionViewController: UIViewController {
     }
 }
 
-
-
-
 // MARK: 콜렉션 뷰
-
-extension CollectionViewController: UICollectionViewDataSource {
+extension CollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
@@ -70,12 +66,6 @@ extension CollectionViewController: UICollectionViewDataSource {
         return cell
     }
 }
-
-extension CollectionViewController: UICollectionViewDelegate {
-    
-    
-}
-
 
 extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     
