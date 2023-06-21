@@ -7,6 +7,7 @@
 
 
 import UIKit
+
 import SnapKit
 import PencilKit
 
@@ -15,13 +16,13 @@ class UserTestView: UIView {
     /// 텍스트 뷰
     let upView: UIView = {
         let mainView = UIView()
-        mainView.backgroundColor = .systemYellow
+        mainView.backgroundColor = .white
         return mainView
     }()
     
     let serveTextView: UITextView = {
         let serveTextView = UITextView()
-        serveTextView.backgroundColor = .systemYellow
+        serveTextView.backgroundColor = .white
         serveTextView.font = UIFont.systemFont(ofSize: 18)
         serveTextView.text = nil
         serveTextView.textAlignment = .center
@@ -123,8 +124,8 @@ class UserTestView: UIView {
             make.centerX.equalToSuperview()
             make.top.equalTo(safeAreaLayoutGuide.snp.topMargin).offset(15)
             make.height.equalToSuperview().dividedBy(5) // Height = 해상도의 1/4
-            make.left.equalToSuperview().offset(15)
-            make.right.equalToSuperview().inset(15)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
             
             upView.layer.cornerRadius = 30
             upView.layer.masksToBounds = true
@@ -138,7 +139,7 @@ class UserTestView: UIView {
             make.bottom.equalToSuperview().inset(5)
             
             serveTextView.layer.borderWidth = 1.0
-            serveTextView.layer.borderColor = UIColor.systemYellow.cgColor
+            serveTextView.layer.borderColor = UIColor.white.cgColor
             
             serveTextView.layer.cornerRadius = 30
             serveTextView.layer.masksToBounds = true

@@ -6,26 +6,27 @@
 //
 
 import UIKit
+
 import PencilKit
 
 class UserTestViewController: UIViewController {
     
-    public var userTestView : UserTestView! // View
+    public var userTestView : UserTestView! /// 뷰 프로퍼티
     
-    
-    var receivedText: String? // 전달받는 텍스트 변수
-    var originalText: String? // 정답으로 사용할 변수
+    var receivedText: String? /// 전달받는 텍스트 변수
+    var originalText: String? /// 정답으로 사용할 변수
     var pasteReceovedText: String = ""
     
-    var answerButton: UIBarButtonItem! // 네비게이션 버튼
+    var answerButton: UIBarButtonItem! /// 네비게이션 버튼
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // MARK: 뷰
         userTestView = UserTestView(frame: view.bounds)
         view.addSubview(userTestView)
         
-        /// 네비게이션
+        // MARK: 네비게이션
         title = "테스트"
         let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveTapped))
         saveButton.tintColor = .white
@@ -70,22 +71,17 @@ class UserTestViewController: UIViewController {
         userTestView.trashImageButton.addGestureRecognizer(trashTapGesture)
         userTestView.trashImageButton.isUserInteractionEnabled = true
         
-        /*
-        let paletteTapGesture = UITapGestureRecognizer(target: self, action: #selector(paletteTapped))
-        userTestView.paletteImageButton.addGestureRecognizer(paletteTapGesture)
-        userTestView.paletteImageButton.isUserInteractionEnabled = true
-        */
-        
         userTestView.canvasView.drawingGestureRecognizer.addTarget(self, action: #selector(drawingStarted))
         
-        // PKToolPicker : Palette
-        setupCanvasView()
+        setupCanvasView() // PKToolPicker : Palette
         setUpTool()
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        let appearance = UINavigationBarAppearance()
+        super.viewWillDisappear(animated)
+        
+        let appearance = UINavigationBarAppearance() /// 네비게이션 바 타이틀 컬러 고정 및 네비게이션 설정
         appearance.backgroundColor = .systemBlue
         appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
         appearance.shadowColor = .none
@@ -155,7 +151,7 @@ class UserTestViewController: UIViewController {
         return false
     }
     
-    
+    // MARK: 캔버스 뷰 관련
     @objc func drawingStarted() {
         userTestView.drawingLabel.isHidden = true
     }
@@ -193,6 +189,7 @@ class UserTestViewController: UIViewController {
         }
     }
     
+    // 정답확인하기
     @objc func answerTapped() {
         if answerButton.title == "정답확인" {
             userTestView.serveTextView.text = originalText
@@ -202,6 +199,7 @@ class UserTestViewController: UIViewController {
             answerButton.title = "정답확인"
         }
     }
+    
     // CollectionView 저장
     @objc func saveTapped(){
         
