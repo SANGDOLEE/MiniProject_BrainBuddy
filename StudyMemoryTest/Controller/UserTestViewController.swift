@@ -30,7 +30,7 @@ class UserTestViewController: UIViewController {
         title = "테스트"
         let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveTapped))
         saveButton.tintColor = .white
-    
+        
         answerButton = UIBarButtonItem(title: "정답확인", style: .plain, target: self, action: #selector(answerTapped))
         answerButton.tintColor = .white
         navigationItem.rightBarButtonItems = [ saveButton, answerButton ] // 네비게이션 버튼2개 배열로 할당
@@ -39,14 +39,14 @@ class UserTestViewController: UIViewController {
         userTestAppearance.backgroundColor = .tintColor
         userTestAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         userTestAppearance.shadowColor = .none
-
+        
         let backButtonAppearance = UIBarButtonItemAppearance()
         backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
         userTestAppearance.backButtonAppearance = backButtonAppearance
-
+        
         let backButtonImage = UIImage(systemName: "chevron.left")
         userTestAppearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
-
+        
         
         navigationController?.navigationBar.tintColor = .tintColor
         navigationController?.navigationBar.scrollEdgeAppearance = userTestAppearance
@@ -56,7 +56,7 @@ class UserTestViewController: UIViewController {
         userTestView.serveTextView.text = replaceCharacter(text: receivedText!) // image에서 변환된 text 전달 받기
         pasteReceovedText = userTestView.serveTextView.text
         originalText = receivedText
-    
+        
         
         // Trash Undo Redo Palette
         let undoTapGesture = UITapGestureRecognizer(target: self, action: #selector(undoTapped))
@@ -93,33 +93,33 @@ class UserTestViewController: UIViewController {
         let lines = text.components(separatedBy: .newlines)
         var modifiedLines: [String] = []
         var problemNumber = 1
-
+        
         for line in lines {
             let modifiedLine = replaceLine(line, problemNumber: &problemNumber)
             modifiedLines.append(modifiedLine)
         }
-
+        
         return modifiedLines.joined(separator: "\n")
     }
-
+    
     func replaceLine(_ line: String, problemNumber: inout Int) -> String {
         let words = line.components(separatedBy: .whitespaces)
         let numberOfWordsToReplace = Int(ceil(Double(words.count) / 3.0))
-
+        
         var modifiedWords = words
         var replacedWordIndices = Set<Int>()
-
+        
         while replacedWordIndices.count < numberOfWordsToReplace {
             let randomIndex = Int.random(in: 0..<words.count)
-
+            
             let word = words[randomIndex]
             if !isSpecialCharacter(word) && !isConsecutiveWordsReplaced(randomIndex, replacedWordIndices) {
                 replacedWordIndices.insert(randomIndex)
             }
         }
-
+        
         let sortedIndices = replacedWordIndices.sorted(by: <)
-
+        
         for index in sortedIndices {
             let replacedWord = words[index]
             let replacedWordCount = replacedWord.count
@@ -131,7 +131,7 @@ class UserTestViewController: UIViewController {
                 problemNumber += 1
             }
         }
-
+        
         return modifiedWords.joined(separator: " ")
     }
     
@@ -178,11 +178,14 @@ class UserTestViewController: UIViewController {
     }
     
     private func setupCanvasView() {
-        userTestView.canvasView.allowsFingerDrawing = false
+        userTestView.canvasView.drawingPolicy = .pencilOnly
+        //userTestView.canvasView.allowsFingerDrawing = false
     }
     private func setUpTool() {
-        if let window = UIApplication.shared.windows.first, let toolPicker =
-            PKToolPicker.shared(for: window) {
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first {
+            let toolPicker = PKToolPicker()
             toolPicker.addObserver(userTestView.canvasView)
             toolPicker.setVisible(true, forFirstResponder: userTestView.canvasView)
             userTestView.canvasView.becomeFirstResponder()
