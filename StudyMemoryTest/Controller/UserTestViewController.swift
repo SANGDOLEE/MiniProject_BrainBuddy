@@ -1,5 +1,6 @@
 import UIKit
 
+import CoreData
 import PencilKit
 
 
@@ -10,7 +11,7 @@ class UserTestViewController: UIViewController {
     
     var receivedText: String? /// 전달받는 텍스트 변수
     var originalText: String? /// 정답으로 사용할 변수
-    var pasteReceovedText: String = ""
+    var pasteReceivedText: String = "" /// 정답확인 후 다시 문제 Text로 돌아가기 위한 복사된 receivedTtext
     
     var answerButton: UIBarButtonItem! /// 네비게이션 버튼
     
@@ -25,7 +26,7 @@ class UserTestViewController: UIViewController {
         title = "테스트"
         let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveTapped))
         saveButton.tintColor = .white
-    
+        
         answerButton = UIBarButtonItem(title: "정답확인", style: .plain, target: self, action: #selector(answerTapped))
         answerButton.tintColor = .white
         navigationItem.rightBarButtonItems = [ saveButton, answerButton ] // 네비게이션 버튼2개 배열로 할당
@@ -34,14 +35,14 @@ class UserTestViewController: UIViewController {
         userTestAppearance.backgroundColor = .tintColor
         userTestAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         userTestAppearance.shadowColor = .none
-
+        
         let backButtonAppearance = UIBarButtonItemAppearance()
         backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
         userTestAppearance.backButtonAppearance = backButtonAppearance
-
+        
         let backButtonImage = UIImage(systemName: "chevron.left")
         userTestAppearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
-
+        
         
         navigationController?.navigationBar.tintColor = .tintColor
         navigationController?.navigationBar.scrollEdgeAppearance = userTestAppearance
@@ -49,9 +50,9 @@ class UserTestViewController: UIViewController {
         
         
         userTestView.serveTextView.text = replaceCharacter(text: receivedText!) // image에서 변환된 text 전달 받기
-        pasteReceovedText = userTestView.serveTextView.text
+        pasteReceivedText = userTestView.serveTextView.text
         originalText = receivedText
-    
+        
         
         // Trash Undo Redo Palette
         let undoTapGesture = UITapGestureRecognizer(target: self, action: #selector(undoTapped))
@@ -88,33 +89,33 @@ class UserTestViewController: UIViewController {
         let lines = text.components(separatedBy: .newlines)
         var modifiedLines: [String] = []
         var problemNumber = 1
-
+        
         for line in lines {
             let modifiedLine = replaceLine(line, problemNumber: &problemNumber)
             modifiedLines.append(modifiedLine)
         }
-
+        
         return modifiedLines.joined(separator: "\n")
     }
-
+    
     func replaceLine(_ line: String, problemNumber: inout Int) -> String {
         let words = line.components(separatedBy: .whitespaces)
         let numberOfWordsToReplace = Int(ceil(Double(words.count) / 3.0))
-
+        
         var modifiedWords = words
         var replacedWordIndices = Set<Int>()
-
+        
         while replacedWordIndices.count < numberOfWordsToReplace {
             let randomIndex = Int.random(in: 0..<words.count)
-
+            
             let word = words[randomIndex]
             if !isSpecialCharacter(word) && !isConsecutiveWordsReplaced(randomIndex, replacedWordIndices) {
                 replacedWordIndices.insert(randomIndex)
             }
         }
-
+        
         let sortedIndices = replacedWordIndices.sorted(by: <)
-
+        
         for index in sortedIndices {
             let replacedWord = words[index]
             let replacedWordCount = replacedWord.count
@@ -126,7 +127,7 @@ class UserTestViewController: UIViewController {
                 problemNumber += 1
             }
         }
-
+        
         return modifiedWords.joined(separator: " ")
     }
     
@@ -191,14 +192,59 @@ class UserTestViewController: UIViewController {
             userTestView.serveTextView.text = originalText
             answerButton.title = "확인완료"
         } else {
-            userTestView.serveTextView.text = pasteReceovedText
+            userTestView.serveTextView.text = pasteReceivedText
             answerButton.title = "정답확인"
         }
     }
     
     // CollectionView 저장
     @objc func saveTapped(){
-        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+               return
+           }
+           
+           let context = appDelegate.persistentContainer.newBackgroundContext()
+           context.perform {
+               let canvasData = NSEntityDescription.insertNewObject(forEntityName: "CanvasData", into: context)
+               
+               if self.userTestView.canvasView.drawing.bounds.isEmpty {
+                   canvasData.setValue(nil, forKey: "canvasState") // Set canvasState as nil when no drawing is present
+               } else {
+                   let drawingData = NSKeyedArchiver.archivedData(withRootObject: self.userTestView.canvasView.drawing)
+                   canvasData.setValue(drawingData, forKey: "canvasState")
+               }
+               
+               // Capture image on the main thread
+               DispatchQueue.main.async {
+                   if let capturedImage = self.captureImage() {
+                       let imageData = capturedImage.jpegData(compressionQuality: 1.0)
+                       canvasData.setValue(imageData, forKey: "imageData")
+                   }
+                   
+                   do {
+                       try context.save()
+                       print("데이터 저장 성공")
+                       
+                       // Move to CollectionViewController
+                       DispatchQueue.main.async {
+                           let collectionViewController = CollectionViewController() // 실제 CollectionViewController 인스턴스를 초기화하는 코드로 대체해야 합니다.
+                           self.navigationController?.pushViewController(collectionViewController, animated: true)
+                       }
+                   } catch {
+                       print("데이터 저장 실패: \(error.localizedDescription)")
+                   }
+               }
+           }
+           
+    }
+    
+    // CollectionView에 Cell로 저장할때의 캡쳐 이미지 함수
+    func captureImage() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(userTestView.canvasView.bounds.size, false, 0.0)
+        defer { UIGraphicsEndImageContext() }
+        userTestView.canvasView.drawHierarchy(in: userTestView.canvasView.bounds, afterScreenUpdates: true)
+        let captureImage = UIGraphicsGetImageFromCurrentImageContext()
+        return captureImage
     }
 }
 
