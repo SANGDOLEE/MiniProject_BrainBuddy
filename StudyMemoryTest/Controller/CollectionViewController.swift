@@ -1,10 +1,3 @@
-//
-//  CollectionViewController.swift
-//  StudyMemoryTest
-//
-//  Created by 이상도 on 2023/05/17.
-//
-
 import UIKit
 
 class CollectionViewController: UIViewController {
@@ -57,30 +50,33 @@ class CollectionViewController: UIViewController {
 extension CollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = mainView.collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! CollectionViewCell
+        let cell = mainView.collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        ///
     }
 }
 
 extension CollectionViewController: UICollectionViewDelegateFlowLayout {
     
-    // cell size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (view.frame.width - 40) / 4.5, height: (view.frame.width - 40) / 4.5)
+        return CGSize(width: (view.frame.width - 40) / 4.5, height: (view.frame.width - 40) / 4.5) /// cell size
     }
     
-    // cell 사이 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 22
+        return 22  /// cell 사이 간격
     }
     
-    // cell과 view의 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20) /// cell과 view의 간격
     }
+    
 }
