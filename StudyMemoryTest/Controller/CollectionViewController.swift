@@ -1,4 +1,5 @@
 import UIKit
+import PencilKit
 import CoreData
 
 class CollectionViewController: UIViewController {
@@ -96,7 +97,26 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        ///
+        let selectedData = canvasData[indexPath.row] // dataSource는 적절한 데이터 소스 배열이어야 합니다.
+        
+        // UserTestViewController 인스턴스 생성 및 초기화
+        let userTestViewController = UserTestViewController()
+        
+        // 필요한 데이터 설정
+        userTestViewController.receivedText = selectedData.receivedText
+        userTestViewController.pasteReceivedText = selectedData.pasteReceivedText!
+        userTestViewController.originalText = selectedData.originalText
+        
+        // canvasState 설정
+        if let canvasStateData = selectedData.canvasState {
+            if let canvasState = NSKeyedUnarchiver.unarchiveObject(with: canvasStateData as! Data) as? PKDrawing {
+                   // 사용자 테스트 뷰 컨트롤러의 canvasView 설정
+                   userTestViewController.loadViewIfNeeded() // userTestView 로드
+                   userTestViewController.userTestView.canvasView.drawing = canvasState
+               }
+           }
+        // UserTestViewController 화면으로 이동
+        navigationController?.pushViewController(userTestViewController, animated: true)
     }
 }
 
