@@ -1,8 +1,10 @@
 import UIKit
+import CoreData
 
 class CollectionViewController: UIViewController {
     
-    private var mainView : MainCollectionView! // 뷰 프로퍼티
+    private var mainView : MainCollectionView! /// 뷰 프로퍼티
+    private var canvasData: [CanvasData] = [] /// CoreData데이터 배열
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -13,6 +15,8 @@ class CollectionViewController: UIViewController {
         mainView.collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         mainView.collectionView.delegate = self
         mainView.collectionView.dataSource = self
+        
+        fetchCanvasData() /// CoreData 데이터 가져오기
         
         // MARK: 네비게이션
         title = "오늘의 암기"
@@ -38,12 +42,29 @@ class CollectionViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = apperance
     }
     
-    /// 이미지 추가하기로 넘어가는 메소드
+    // 이미지 추가하기로 넘어가는 메소드
     @objc func addButtonTapped() {
         let addImageViewController = AddImageViewController()
         navigationController?.pushViewController(addImageViewController, animated: true)
         
     }
+    
+    // CoreData에서 CanvasData 가져오기
+       func fetchCanvasData() {
+           guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+               return
+           }
+           
+           let context = appDelegate.persistentContainer.viewContext
+           let fetchRequest: NSFetchRequest<CanvasData> = CanvasData.fetchRequest()
+           
+           do {
+               self.canvasData = try context.fetch(fetchRequest)
+               mainView.collectionView.reloadData()
+           } catch {
+               print("데이터 검색 실패: \(error.localizedDescription)")
+           }
+       }
 }
 
 // MARK: 콜렉션 뷰
@@ -51,12 +72,13 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 4
+        return canvasData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = mainView.collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-        
+        let canvas = canvasData[indexPath.item]
+        cell.configure(with:canvas)
         return cell
     }
     

@@ -3,8 +3,6 @@ import UIKit
 import CoreData
 import PencilKit
 
-
-
 class UserTestViewController: UIViewController {
     
     public var userTestView : UserTestView! /// 뷰 프로퍼티
@@ -200,41 +198,44 @@ class UserTestViewController: UIViewController {
     // CollectionView 저장
     @objc func saveTapped(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-               return
-           }
-           
-           let context = appDelegate.persistentContainer.newBackgroundContext()
-           context.perform {
-               let canvasData = NSEntityDescription.insertNewObject(forEntityName: "CanvasData", into: context)
-               
-               if self.userTestView.canvasView.drawing.bounds.isEmpty {
-                   canvasData.setValue(nil, forKey: "canvasState") // Set canvasState as nil when no drawing is present
-               } else {
-                   let drawingData = NSKeyedArchiver.archivedData(withRootObject: self.userTestView.canvasView.drawing)
-                   canvasData.setValue(drawingData, forKey: "canvasState")
-               }
-               
-               // Capture image on the main thread
-               DispatchQueue.main.async {
-                   if let capturedImage = self.captureImage() {
-                       let imageData = capturedImage.jpegData(compressionQuality: 1.0)
-                       canvasData.setValue(imageData, forKey: "imageData")
-                   }
-                   
-                   do {
-                       try context.save()
-                       print("데이터 저장 성공")
-                       
-                       // Move to CollectionViewController
-                       DispatchQueue.main.async {
-                           let collectionViewController = CollectionViewController() // 실제 CollectionViewController 인스턴스를 초기화하는 코드로 대체해야 합니다.
-                           self.navigationController?.pushViewController(collectionViewController, animated: true)
-                       }
-                   } catch {
-                       print("데이터 저장 실패: \(error.localizedDescription)")
-                   }
-               }
-           }
+                return
+            }
+
+            let context = appDelegate.persistentContainer.newBackgroundContext()
+            context.perform {
+                let canvasData = NSEntityDescription.insertNewObject(forEntityName: "CanvasData", into: context)
+
+                if self.userTestView.canvasView.drawing.bounds.isEmpty {
+                    canvasData.setValue(nil, forKey: "canvasState") // 그림이 없을 경우 canvasState를 nil로 설정
+                } else {
+                    let drawingData = NSKeyedArchiver.archivedData(withRootObject: self.userTestView.canvasView.drawing)
+                    canvasData.setValue(drawingData, forKey: "canvasState")
+                }
+
+                // 이미지를 main 스레드에서 캡처
+                DispatchQueue.main.async {
+                    if let capturedImage = self.captureImage() {
+                        let imageData = capturedImage.jpegData(compressionQuality: 1.0)
+                        canvasData.setValue(imageData, forKey: "imageData")
+                    }
+                    canvasData.setValue(self.originalText, forKey: "originalText")
+                    canvasData.setValue(self.pasteReceivedText, forKey: "pasteReceivedText")
+                    canvasData.setValue(self.receivedText, forKey: "receivedText")
+
+                    do {
+                        try context.save()
+                        print("데이터 저장 성공")
+
+                        // CollectionViewController로 이동
+                        DispatchQueue.main.async {
+                            let collectionViewController = CollectionViewController()
+                            self.navigationController?.pushViewController(collectionViewController, animated: true)
+                        }
+                    } catch {
+                        print("데이터 저장 실패: \(error.localizedDescription)")
+                    }
+                }
+            }
            
     }
     
