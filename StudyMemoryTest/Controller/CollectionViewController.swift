@@ -20,7 +20,7 @@ class CollectionViewController: UIViewController {
         
         // MARK: 네비게이션
         title = "오늘의 암기"
-       
+        
         let backButton = UIBarButtonItem() /// AddImageVC에서 현재화면으로 돌아오는 버튼 설정
         backButton.title = ""
         backButton.tintColor = UIColor.white
@@ -50,21 +50,21 @@ class CollectionViewController: UIViewController {
     }
     
     // CoreData에서 CanvasData 가져오기
-       func fetchCanvasData() {
-           guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-               return
-           }
-           
-           let context = appDelegate.persistentContainer.viewContext
-           let fetchRequest: NSFetchRequest<CanvasData> = CanvasData.fetchRequest()
-           
-           do {
-               self.canvasData = try context.fetch(fetchRequest)
-               mainView.collectionView.reloadData()
-           } catch {
-               print("데이터 검색 실패: \(error.localizedDescription)")
-           }
-       }
+    func fetchCanvasData() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<CanvasData> = CanvasData.fetchRequest()
+        
+        do {
+            self.canvasData = try context.fetch(fetchRequest)
+            mainView.collectionView.reloadData()
+        } catch {
+            print("데이터 검색 실패: \(error.localizedDescription)")
+        }
+    }
 }
 
 // MARK: 콜렉션 뷰
@@ -75,10 +75,23 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
         return canvasData.count
     }
     
+    func captureScreen() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        view.layer.render(in: context)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = mainView.collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-        let canvas = canvasData[indexPath.item]
-        cell.configure(with:canvas)
+        if indexPath.item < canvasData.count {
+            let canvas = canvasData[indexPath.item]
+            if let imageData = canvas.imageData, let image = UIImage(data: imageData) {
+                cell.configure(with: image)
+            }
+        }
         return cell
     }
     

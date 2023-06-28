@@ -195,6 +195,15 @@ class UserTestViewController: UIViewController {
         }
     }
     
+    // CollectionView에 Cell로 저장할때의 캡쳐 이미지 함수
+    func captureImage() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 0.0)
+        defer { UIGraphicsEndImageContext() }
+        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        let capturedImage = UIGraphicsGetImageFromCurrentImageContext()
+        return capturedImage
+    }
+    
     // CollectionView 저장
     @objc func saveTapped(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -237,15 +246,6 @@ class UserTestViewController: UIViewController {
                 }
             }
            
-    }
-    
-    // CollectionView에 Cell로 저장할때의 캡쳐 이미지 함수
-    func captureImage() -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(userTestView.canvasView.bounds.size, false, 0.0)
-        defer { UIGraphicsEndImageContext() }
-        userTestView.canvasView.drawHierarchy(in: userTestView.canvasView.bounds, afterScreenUpdates: true)
-        let captureImage = UIGraphicsGetImageFromCurrentImageContext()
-        return captureImage
     }
 }
 
