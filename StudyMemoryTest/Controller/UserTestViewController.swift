@@ -13,6 +13,8 @@ class UserTestViewController: UIViewController {
     
     var answerButton: UIBarButtonItem! /// 네비게이션 버튼
     
+    var selectedCanvasData: CanvasData?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,6 +71,7 @@ class UserTestViewController: UIViewController {
         
         setupCanvasView() // PKToolPicker : Palette
         setUpTool()
+        
         
     }
     
@@ -207,45 +210,52 @@ class UserTestViewController: UIViewController {
     // CollectionView 저장
     @objc func saveTapped(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                return
+            return
+        }
+        
+        let context = appDelegate.persistentContainer.newBackgroundContext()
+        context.perform {
+            let canvasData: CanvasData
+            
+            if let selectedData = self.selectedCanvasData {
+                // 이미 선택한 셀이 있다면 해당 셀의 데이터를 수정
+                canvasData = selectedData
+            } else {
+                // 선택한 셀이 없다면 새로운 데이터 생성
+                canvasData = NSEntityDescription.insertNewObject(forEntityName: "CanvasData", into: context) as! CanvasData
             }
-
-            let context = appDelegate.persistentContainer.newBackgroundContext()
-            context.perform {
-                let canvasData = NSEntityDescription.insertNewObject(forEntityName: "CanvasData", into: context)
-
-                if self.userTestView.canvasView.drawing.bounds.isEmpty {
-                    canvasData.setValue(nil, forKey: "canvasState") // 그림이 없을 경우 canvasState를 nil로 설정
-                } else {
-                    let drawingData = NSKeyedArchiver.archivedData(withRootObject: self.userTestView.canvasView.drawing)
-                    canvasData.setValue(drawingData, forKey: "canvasState")
+            
+            if self.userTestView.canvasView.drawing.bounds.isEmpty {
+                canvasData.canvasState = nil // 그림이 없을 경우 canvasState를 nil로 설정
+            } else {
+                let drawingData = NSKeyedArchiver.archivedData(withRootObject: self.userTestView.canvasView.drawing) as NSData
+                canvasData.canvasState = drawingData
+            }
+            
+            // 이미지를 main 스레드에서 캡처
+            DispatchQueue.main.async {
+                if let capturedImage = self.captureImage() {
+                    let imageData = capturedImage.jpegData(compressionQuality: 1.0)
+                    canvasData.imageData = imageData
                 }
-
-                // 이미지를 main 스레드에서 캡처
-                DispatchQueue.main.async {
-                    if let capturedImage = self.captureImage() {
-                        let imageData = capturedImage.jpegData(compressionQuality: 1.0)
-                        canvasData.setValue(imageData, forKey: "imageData")
+                canvasData.originalText = self.originalText
+                canvasData.pasteReceivedText = self.pasteReceivedText
+                canvasData.receivedText = self.receivedText
+                
+                do {
+                    try context.save()
+                    print("데이터 저장 성공")
+                    
+                    // CollectionViewController로 이동
+                    DispatchQueue.main.async {
+                        let collectionViewController = CollectionViewController()
+                        self.navigationController?.pushViewController(collectionViewController, animated: true)
                     }
-                    canvasData.setValue(self.originalText, forKey: "originalText")
-                    canvasData.setValue(self.pasteReceivedText, forKey: "pasteReceivedText")
-                    canvasData.setValue(self.receivedText, forKey: "receivedText")
-
-                    do {
-                        try context.save()
-                        print("데이터 저장 성공")
-
-                        // CollectionViewController로 이동
-                        DispatchQueue.main.async {
-                            let collectionViewController = CollectionViewController()
-                            self.navigationController?.pushViewController(collectionViewController, animated: true)
-                        }
-                    } catch {
-                        print("데이터 저장 실패: \(error.localizedDescription)")
-                    }
+                } catch {
+                    print("데이터 저장 실패: \(error.localizedDescription)")
                 }
             }
-           
+        }
     }
 }
 

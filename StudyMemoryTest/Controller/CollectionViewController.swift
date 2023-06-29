@@ -87,36 +87,40 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = mainView.collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-        if indexPath.item < canvasData.count {
-            let canvas = canvasData[indexPath.item]
-            if let imageData = canvas.imageData, let image = UIImage(data: imageData) {
-                cell.configure(with: image)
+        
+        let reversedIndex = canvasData.count - 1 - indexPath.item /// 역순 인덱스 계산 ( 사용자가 저장하는 데이터 최신일수록 cell 0번에 )
+            
+            if reversedIndex >= 0 && reversedIndex < canvasData.count {
+                let canvas = canvasData[reversedIndex]
+                if let imageData = canvas.imageData, let image = UIImage(data: imageData) {
+                    cell.configure(with: image)
+                }
             }
-        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let selectedData = canvasData[indexPath.row] // dataSource는 적절한 데이터 소스 배열이어야 합니다.
-        
-        // UserTestViewController 인스턴스 생성 및 초기화
-        let userTestViewController = UserTestViewController()
-        
-        // 필요한 데이터 설정
-        userTestViewController.receivedText = selectedData.receivedText
+            
+            // UserTestViewController 인스턴스 생성 및 초기화
+            let userTestViewController = UserTestViewController()
+            
+            // 필요한 데이터 설정
+            userTestViewController.receivedText = selectedData.receivedText
         userTestViewController.pasteReceivedText = selectedData.pasteReceivedText!
-        userTestViewController.originalText = selectedData.originalText
-        
-        // canvasState 설정
-        if let canvasStateData = selectedData.canvasState {
-            if let canvasState = NSKeyedUnarchiver.unarchiveObject(with: canvasStateData as! Data) as? PKDrawing {
-                   // 사용자 테스트 뷰 컨트롤러의 canvasView 설정
-                   userTestViewController.loadViewIfNeeded() // userTestView 로드
-                   userTestViewController.userTestView.canvasView.drawing = canvasState
-               }
-           }
-        // UserTestViewController 화면으로 이동
-        navigationController?.pushViewController(userTestViewController, animated: true)
+            userTestViewController.originalText = selectedData.originalText
+            
+            // canvasState 설정
+            if let canvasStateData = selectedData.canvasState,
+               let canvasState = NSKeyedUnarchiver.unarchiveObject(with: canvasStateData as! Data) as? PKDrawing {
+                // 사용자 테스트 뷰 컨트롤러의 canvasView 설정
+                userTestViewController.loadViewIfNeeded() // userTestView 로드
+                userTestViewController.userTestView.canvasView.drawing = canvasState
+            }
+            
+            // UserTestViewController 화면으로 이동
+            navigationController?.pushViewController(userTestViewController, animated: true)
     }
 }
 
