@@ -87,28 +87,27 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = mainView.collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-        
-        let reversedIndex = canvasData.count - 1 - indexPath.item /// 역순 인덱스 계산 ( 사용자가 저장하는 데이터 최신일수록 cell 0번에 )
-            
-            if reversedIndex >= 0 && reversedIndex < canvasData.count {
-                let canvas = canvasData[reversedIndex]
-                if let imageData = canvas.imageData, let image = UIImage(data: imageData) {
-                    cell.configure(with: image)
-                }
-            }
-        return cell
+          
+          let reversedIndex = indexPath.item
+          
+          if reversedIndex >= 0 && reversedIndex < canvasData.count {
+              let canvas = canvasData[reversedIndex]
+              if let imageData = canvas.imageData, let image = UIImage(data: imageData) {
+                  cell.configure(with: image)
+              }
+          }
+          return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let selectedData = canvasData[indexPath.row] // dataSource는 적절한 데이터 소스 배열이어야 합니다.
+        let selectedData = canvasData[indexPath.item]
             
             // UserTestViewController 인스턴스 생성 및 초기화
             let userTestViewController = UserTestViewController()
             
             // 필요한 데이터 설정
             userTestViewController.receivedText = selectedData.receivedText
-        userTestViewController.pasteReceivedText = selectedData.pasteReceivedText!
+            userTestViewController.pasteReceivedText = selectedData.pasteReceivedText!
             userTestViewController.originalText = selectedData.originalText
             
             // canvasState 설정
