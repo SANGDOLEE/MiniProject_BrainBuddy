@@ -53,18 +53,21 @@ class CollectionViewController: UIViewController {
     // CoreData에서 CanvasData 가져오기
     func fetchCanvasData() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let context = appDelegate.persistentContainer.viewContext
-        let fetchRequest: NSFetchRequest<CanvasData> = CanvasData.fetchRequest()
-        
-        do {
-            self.canvasData = try context.fetch(fetchRequest)
-            mainView.collectionView.reloadData()
-        } catch {
-            print("데이터 검색 실패: \(error.localizedDescription)")
-        }
+             return
+         }
+         
+         let context = appDelegate.persistentContainer.viewContext
+         let fetchRequest: NSFetchRequest<CanvasData> = CanvasData.fetchRequest()
+         
+         do {
+             var fetchedData = try context.fetch(fetchRequest)
+             fetchedData.reverse() // 데이터 배열의 순서를 역순으로 변경
+             
+             self.canvasData = fetchedData
+             mainView.collectionView.reloadData()
+         } catch {
+             print("데이터 검색 실패: \(error.localizedDescription)")
+         }
     }
 }
 
