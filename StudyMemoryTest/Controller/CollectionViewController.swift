@@ -4,7 +4,7 @@ import CoreData
 
 class CollectionViewController: UIViewController {
     
-    private var mainView : MainCollectionView! /// 뷰 프로퍼티
+    public var mainView : MainCollectionView! /// 뷰 프로퍼티
     private var canvasData: [CanvasData] = [] /// CoreData데이터 배열
     
     override func viewDidLoad() {
@@ -104,7 +104,7 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedData = canvasData[indexPath.item]
-            
+                
             // UserTestViewController 인스턴스 생성 및 초기화
             let userTestViewController = UserTestViewController()
             
@@ -122,6 +122,8 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
             }
             
             // UserTestViewController 화면으로 이동
+            userTestViewController.selectedCanvasData = selectedData // 선택한 데이터 전달
+            
             navigationController?.pushViewController(userTestViewController, animated: true)
     }
 }

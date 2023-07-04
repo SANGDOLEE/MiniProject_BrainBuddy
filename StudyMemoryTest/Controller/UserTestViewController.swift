@@ -210,52 +210,81 @@ class UserTestViewController: UIViewController {
     // CollectionView 저장
     @objc func saveTapped(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let context = appDelegate.persistentContainer.newBackgroundContext()
-        context.perform {
-            let canvasData: CanvasData
-            
-            if let selectedData = self.selectedCanvasData {
-                // 이미 선택한 셀이 있다면 해당 셀의 데이터를 수정
-                canvasData = selectedData
-            } else {
-                // 선택한 셀이 없다면 새로운 데이터 생성
-                canvasData = NSEntityDescription.insertNewObject(forEntityName: "CanvasData", into: context) as! CanvasData
-            }
-            
-            if self.userTestView.canvasView.drawing.bounds.isEmpty {
-                canvasData.canvasState = nil // 그림이 없을 경우 canvasState를 nil로 설정
-            } else {
-                let drawingData = NSKeyedArchiver.archivedData(withRootObject: self.userTestView.canvasView.drawing) as NSData
-                canvasData.canvasState = drawingData
-            }
-            
-            // 이미지를 main 스레드에서 캡처
-            DispatchQueue.main.async {
-                if let capturedImage = self.captureImage() {
-                    let imageData = capturedImage.jpegData(compressionQuality: 1.0)
-                    canvasData.imageData = imageData
-                }
-                canvasData.originalText = self.originalText
-                canvasData.pasteReceivedText = self.pasteReceivedText
-                canvasData.receivedText = self.receivedText
-                
-                do {
-                    try context.save()
-                    print("데이터 저장 성공")
-                    
-                    // CollectionViewController로 이동
-                    DispatchQueue.main.async {
-                        let collectionViewController = CollectionViewController()
-                        self.navigationController?.pushViewController(collectionViewController, animated: true)
-                    }
-                } catch {
-                    print("데이터 저장 실패: \(error.localizedDescription)")
-                }
-            }
-        }
+               return
+           }
+           
+           let context = appDelegate.persistentContainer.viewContext
+           
+           if let selectedData = self.selectedCanvasData {
+               DispatchQueue.main.async {
+                   context.refresh(selectedData, mergeChanges: true) // 기존 데이터를 리프레시하여 변경 내용을 가져옴
+                   
+                   if self.userTestView.canvasView.drawing.bounds.isEmpty {
+                       selectedData.canvasState = nil // 그림이 없을 경우 canvasState를 nil로 설정
+                   } else {
+                       let drawingData = NSKeyedArchiver.archivedData(withRootObject: self.userTestView.canvasView.drawing) as NSData
+                       selectedData.canvasState = drawingData
+                   }
+                   
+                   if let capturedImage = self.captureImage() {
+                       let imageData = capturedImage.jpegData(compressionQuality: 1.0)
+                       selectedData.imageData = imageData
+                   }
+                   
+                   selectedData.originalText = self.originalText
+                   selectedData.pasteReceivedText = self.pasteReceivedText
+                   selectedData.receivedText = self.receivedText
+                   
+                   do {
+                       try context.save()
+                       print("데이터 수정 성공")
+                       
+                       // 현재 화면을 pop하여 이전 화면으로 이동
+                       DispatchQueue.main.async {
+                           let collectionViewController = CollectionViewController()
+                           collectionViewController.mainView?.collectionView.reloadData()
+                           self.navigationController?.pushViewController(collectionViewController, animated: true)
+                       }
+                   } catch {
+                       print("데이터 수정 실패: \(error.localizedDescription)")
+                   }
+               }
+           } else {
+               // 기존 셀이 없는 경우에는 새로운 데이터로 저장하도록 처리
+               let canvasData = NSEntityDescription.insertNewObject(forEntityName: "CanvasData", into: context) as! CanvasData
+               
+               DispatchQueue.main.async {
+                   if self.userTestView.canvasView.drawing.bounds.isEmpty {
+                       canvasData.canvasState = nil // 그림이 없을 경우 canvasState를 nil로 설정
+                   } else {
+                       let drawingData = NSKeyedArchiver.archivedData(withRootObject: self.userTestView.canvasView.drawing) as NSData
+                       canvasData.canvasState = drawingData
+                   }
+                   
+                   if let capturedImage = self.captureImage() {
+                       let imageData = capturedImage.jpegData(compressionQuality: 1.0)
+                       canvasData.imageData = imageData
+                   }
+                   
+                   canvasData.originalText = self.originalText
+                   canvasData.pasteReceivedText = self.pasteReceivedText
+                   canvasData.receivedText = self.receivedText
+                   
+                   do {
+                       try context.save()
+                       print("데이터 저장 성공")
+                       
+                       // CollectionViewController로 이동
+                       DispatchQueue.main.async {
+                           let collectionViewController = CollectionViewController()
+                           collectionViewController.mainView?.collectionView.reloadData()
+                           self.navigationController?.pushViewController(collectionViewController, animated: true)
+                       }
+                   } catch {
+                       print("데이터 저장 실패: \(error.localizedDescription)")
+                   }
+               }
+           }
     }
 }
 
