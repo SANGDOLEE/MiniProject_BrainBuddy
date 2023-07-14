@@ -1,10 +1,3 @@
-//
-//  AddImageView.swift
-//  StudyMemoryTest
-//
-//  Created by 이상도 on 2023/05/18.
-//
-
 import UIKit
 
 import SnapKit
