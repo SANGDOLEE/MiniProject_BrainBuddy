@@ -12,9 +12,10 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    
     // MARK: 화면 회전 비활성화
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        return [.portrait, .landscape] // 또는 .landscape 등 원하는 방향으로 설정할 것
+        return [.portrait] // 또는 .landscape 등 원하는 방향으로 설정할 것
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

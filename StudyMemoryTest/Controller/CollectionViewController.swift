@@ -31,6 +31,7 @@ class CollectionViewController: UIViewController {
         addButton.tintColor = .white
         navigationItem.rightBarButtonItem = addButton
         
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,6 +43,8 @@ class CollectionViewController: UIViewController {
         apperance.shadowColor = .none
         navigationController?.navigationBar.scrollEdgeAppearance = apperance
     }
+    
+    
     
     // 이미지 추가하기로 넘어가는 메소드
     @objc func addButtonTapped() {

@@ -4,6 +4,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     private var imageView: UIImageView!
     
+ 
     func configure(with image: UIImage) {
         imageView.image = image
     }
@@ -19,7 +20,7 @@ class CollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius = 30
         self.layer.masksToBounds = true
         self.backgroundColor = .systemRed
-        
+       
     }
     
     required init?(coder: NSCoder) {

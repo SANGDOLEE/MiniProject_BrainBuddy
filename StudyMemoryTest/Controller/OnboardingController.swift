@@ -1,10 +1,3 @@
-//
-//  OnboardingController.swift
-//  StudyMemoryTest
-//
-//  Created by 이상도 on 2023/07/12.
-//
-
 import UIKit
 
 class OnboardingController: UIViewController {
@@ -29,7 +22,6 @@ class OnboardingController: UIViewController {
             
             return
         }
-        
         onboardingView.currentPage -= 1
         onboardingView.pageControl.currentPage = onboardingView.currentPage
         
@@ -42,6 +34,7 @@ class OnboardingController: UIViewController {
     @objc private func nextButtonTapped() {
         
         guard onboardingView.currentPage < 3 else {
+            
             hideOnboardingView() // 마지막페이지에서 "DONE" 터치시 호출
             return
         }
@@ -56,7 +49,6 @@ class OnboardingController: UIViewController {
     }
     
     private func hideOnboardingView() {
-        
         
         let collectionVC = CollectionViewController() // 이동할 뷰 컨트롤러 인스턴스 생성
         

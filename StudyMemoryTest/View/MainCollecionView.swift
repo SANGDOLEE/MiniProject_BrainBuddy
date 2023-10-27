@@ -11,6 +11,7 @@ class MainCollectionView: UIView {
         return cv
     }()
     
+    
     override init(frame: CGRect){
         super.init(frame: frame)
         self.backgroundColor = UIColor.tintColor

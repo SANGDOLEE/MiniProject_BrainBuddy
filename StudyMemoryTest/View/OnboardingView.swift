@@ -1,4 +1,3 @@
-
 import UIKit
 
 import SnapKit
@@ -61,7 +60,7 @@ class OnboardingView: UIView {
         let pc = UIPageControl()
         pc.currentPage = 0
         pc.numberOfPages = 4
-        pc.currentPageIndicatorTintColor = .mainPink
+        pc.currentPageIndicatorTintColor = .systemBlue
         pc.pageIndicatorTintColor = .gray
         
         return pc
