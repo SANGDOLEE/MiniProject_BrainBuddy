@@ -3,6 +3,7 @@ import UIKit
 import SnapKit
 
 let cellID = "Cell" /// Cell ID 등록
+
 class MainCollectionView: UIView {
     
     let collectionView: UICollectionView = {
@@ -10,7 +11,6 @@ class MainCollectionView: UIView {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
         return cv
     }()
-    
     
     override init(frame: CGRect){
         super.init(frame: frame)
