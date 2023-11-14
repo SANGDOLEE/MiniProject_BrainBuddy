@@ -124,8 +124,8 @@ class UserTestView: UIView {
             make.centerX.equalToSuperview()
             make.top.equalTo(safeAreaLayoutGuide.snp.topMargin).offset(15)
             make.height.equalToSuperview().dividedBy(5) // Height = 해상도의 1/4
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
+            make.left.equalToSuperview().offset(10)
+            make.right.equalToSuperview().offset(-10)
             
             upView.layer.cornerRadius = 30
             upView.layer.masksToBounds = true
@@ -150,12 +150,12 @@ class UserTestView: UIView {
         bottomView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(upView.snp.bottomMargin).offset(20)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(10)
+            make.right.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview().inset(10)
             
             bottomView.layer.cornerRadius = 30
-            bottomView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            // bottomView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
             bottomView.layer.masksToBounds = true
             
         }

@@ -9,6 +9,8 @@ class MainCollectionView: UIView {
     let collectionView: UICollectionView = {
         let flowlayout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
+        cv.allowsSelection = true // Cell 삭제시 선택 가능하게
+        cv.allowsSelectionDuringEditing = true
         return cv
     }()
     
