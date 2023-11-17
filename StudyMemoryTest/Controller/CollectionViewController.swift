@@ -177,32 +177,34 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if mainView.collectionView.isEditing {
-                // Edit 모드에서는 해당 셀을 선택한 셀 배열에 추가
-                selectedIndexPaths.append(indexPath)
-            } else {
-                // Edit 모드가 아닌 경우, 해당 셀의 내용을 보여주기 위해 기존 코드 사용
-                let selectedData = canvasData[indexPath.item]
-                
-                // UserTestViewController 인스턴스 생성 및 초기화
-                let userTestViewController = UserTestViewController()
-                
-                // 필요한 데이터 설정
-                userTestViewController.receivedText = selectedData.receivedText
-                userTestViewController.pasteReceivedText = selectedData.pasteReceivedText!
-                userTestViewController.originalText = selectedData.originalText
-                
-                // canvasState 설정
-                if let canvasStateData = selectedData.canvasState,
-                   let canvasState = NSKeyedUnarchiver.unarchiveObject(with: canvasStateData as! Data) as? PKDrawing {
-                    // 사용자 테스트 뷰 컨트롤러의 canvasView 설정
-                    userTestViewController.loadViewIfNeeded() // userTestView 로드
-                    userTestViewController.userTestView.canvasView.drawing = canvasState
-                }
-                
-                // UserTestViewController 화면으로 이동
-                userTestViewController.selectedCanvasData = selectedData // 선택한 데이터 전달
-                navigationController?.pushViewController(userTestViewController, animated: true)
-            }
+               // Edit 모드에서는 해당 셀을 선택한 셀 배열에 추가
+               if !selectedIndexPaths.contains(indexPath) {
+                   selectedIndexPaths.append(indexPath)
+               }
+           } else {
+               // Edit 모드가 아닌 경우, 해당 셀의 내용을 보여주기 위해 기존 코드 사용
+               let selectedData = canvasData[indexPath.item]
+               
+               // UserTestViewController 인스턴스 생성 및 초기화
+               let userTestViewController = UserTestViewController()
+               
+               // 필요한 데이터 설정
+               userTestViewController.receivedText = selectedData.receivedText
+               userTestViewController.pasteReceivedText = selectedData.pasteReceivedText!
+               userTestViewController.originalText = selectedData.originalText
+               
+               // canvasState 설정
+               if let canvasStateData = selectedData.canvasState,
+                  let canvasState = NSKeyedUnarchiver.unarchiveObject(with: canvasStateData as! Data) as? PKDrawing {
+                   // 사용자 테스트 뷰 컨트롤러의 canvasView 설정
+                   userTestViewController.loadViewIfNeeded() // userTestView 로드
+                   userTestViewController.userTestView.canvasView.drawing = canvasState
+               }
+               
+               // UserTestViewController 화면으로 이동
+               userTestViewController.selectedCanvasData = selectedData // 선택한 데이터 전달
+               navigationController?.pushViewController(userTestViewController, animated: true)
+           }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
