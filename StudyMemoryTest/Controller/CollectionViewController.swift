@@ -117,6 +117,13 @@ class CollectionViewController: UIViewController {
         
         // 삭제한 후 테이블 뷰 업데이트
         fetchCanvasData()
+        
+        if canvasData.isEmpty {
+            mainView.collectionView.isEditing = false
+            mainView.collectionView.allowsMultipleSelection = false
+            navigationItem.leftBarButtonItem?.title = "Edit"
+            navigationItem.setRightBarButton(addButton, animated: true)
+        }
     }
     
     func deleteCanvasData(_ canvas: CanvasData) {
