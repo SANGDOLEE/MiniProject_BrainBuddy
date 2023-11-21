@@ -6,48 +6,47 @@ extension UIColor {
     static var mainPink = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
 }
 
-// 온보딩 1 : + 버튼 눌러서 공부할 이미지 추가
-// 온보딩 2 : 공부할 내용의 사진을 추가
-// 온보딩 3 : 내가 암기한 내용들을 자유롭게 적어봅니다.
-// 온보딩 4 : 정답보기를 눌러 정답을 확인하고 저장합니다 !
-
 class OnboardingView: UIView {
     
     var currentPage = 0
     
     let mainImage: UIImageView = {
-            let imageView = UIImageView()
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.contentMode = .scaleAspectFit
-            return imageView
-        }()
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    let descriptionTextView: UITextView = {
+        let textView = UITextView()
+        textView.textAlignment = .center
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        return textView
+    }()
+    
+    /// Onborading에 관한 Page를 관리하고 호출함
+    func configure(with page: OnboardingPage) {
+        mainImage.image = UIImage(named: page.imageName)
         
-        let descriptionTextView: UITextView = {
-            let textView = UITextView()
-            textView.textAlignment = .center
-            textView.isEditable = false
-            textView.isScrollEnabled = false
-            textView.translatesAutoresizingMaskIntoConstraints = false
-            return textView
-        }()
+        let attributedText = NSMutableAttributedString(string: page.attributedDescription.string, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 36),
+                                                                                                               NSAttributedString.Key.foregroundColor: UIColor.systemGray5])
+        attributedText.append(NSAttributedString(string: "\n\n\(page.discriptionText.string)",
+                                                 attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 22),
+                                                              NSAttributedString.Key.foregroundColor: UIColor.white]))
         
-        func configure(with page: OnboardingPage) {
-            mainImage.image = UIImage(named: page.imageName)
-
-            let attributedText = NSMutableAttributedString(string: page.attributedDescription.string, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
-            attributedText.append(NSAttributedString(string: "\n\n\(page.attributedDescription.string)",
-                                                     attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13),
-                                                                  NSAttributedString.Key.foregroundColor: UIColor.gray]))
-
-            descriptionTextView.attributedText = attributedText
-            // 추가적으로 다른 페이지에 필요한 설정도 수행할 수 있음
-        }
+        descriptionTextView.attributedText = attributedText
+        descriptionTextView.backgroundColor = page.backColor
+        backgroundColor = page.backColor // backColor 설정 추가
+        // 추가적으로 다른 페이지에 필요한 설정도 수행할 수 있음
+    }
     
     let previousButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("PREV", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.setTitleColor(.gray, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -55,8 +54,8 @@ class OnboardingView: UIView {
     let nextButton: UIButton = {
         let button = UIButton(type:.system)
         button.setTitle("NEXT", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.setTitleColor(.gray, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -66,7 +65,7 @@ class OnboardingView: UIView {
         pc.currentPage = 0
         pc.numberOfPages = 4
         pc.currentPageIndicatorTintColor = .systemBlue
-        pc.pageIndicatorTintColor = .gray
+        pc.pageIndicatorTintColor = .white
         
         return pc
     }()
@@ -128,18 +127,19 @@ class OnboardingView: UIView {
         
         topImageContainerView.addSubview(mainImage)
         mainImage.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-            make.height.equalTo(200)
-            make.width.equalTo(200)
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(120)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().inset(20)
+            make.height.equalToSuperview().multipliedBy(0.9)
         }
         
         descriptionTextView.snp.makeConstraints { make in
-            make.top.equalTo(mainImage.snp.bottom)
-            make.left.equalToSuperview().offset(24)
-            make.right.equalToSuperview().inset(24)
-            make.bottom.equalToSuperview()
+            make.top.equalTo(mainImage.snp.bottom).offset(50)
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().inset(100)
         }
         
     }
-   
+    
 }

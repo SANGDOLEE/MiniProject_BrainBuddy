@@ -21,7 +21,7 @@ class OnboardingController: UIViewController {
 
         // 초기 페이지 설정
         onboardingView.configure(with: onboardingPages[0])
-
+        
         // 온보딩 PREV, NEXT 버튼
         onboardingView.previousButton.addTarget(self, action: #selector(previousButtonTapped), for: .touchUpInside)
         onboardingView.nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
