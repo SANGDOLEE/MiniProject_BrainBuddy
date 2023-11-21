@@ -32,13 +32,13 @@ class OnboardingView: UIView {
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
-
+        
         let attributedText = NSMutableAttributedString()
         let titleString = NSAttributedString(
             string: page.attributedDescription.string,
             attributes: [
                 NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 40),
-                NSAttributedString.Key.foregroundColor: UIColor.systemGray5,
+                NSAttributedString.Key.foregroundColor: UIColor.tintColor,
                 NSAttributedString.Key.paragraphStyle: paragraphStyle
             ]
         )
@@ -46,11 +46,11 @@ class OnboardingView: UIView {
             string: "\n\n\(page.discriptionText.string)",
             attributes: [
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24),
-                NSAttributedString.Key.foregroundColor: UIColor.white,
+                NSAttributedString.Key.foregroundColor: UIColor.gray,
                 NSAttributedString.Key.paragraphStyle: paragraphStyle
             ]
         )
-
+        
         attributedText.append(titleString)
         attributedText.append(descriptionString)
         descriptionTextView.attributedText = attributedText
@@ -64,7 +64,13 @@ class OnboardingView: UIView {
         button.setTitle("PREV", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.tintColor
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        let viewCornerRadius : CGFloat = 30
+        button.layer.cornerRadius = viewCornerRadius
+        button.layer.masksToBounds = true
+        
         return button
     }()
     
@@ -73,7 +79,13 @@ class OnboardingView: UIView {
         button.setTitle("NEXT", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.tintColor
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        let viewCornerRadius : CGFloat = 30
+        button.layer.cornerRadius = viewCornerRadius
+        button.layer.masksToBounds = true
+        
         return button
     }()
     
@@ -82,7 +94,7 @@ class OnboardingView: UIView {
         pc.currentPage = 0
         pc.numberOfPages = 4
         pc.currentPageIndicatorTintColor = .systemBlue
-        pc.pageIndicatorTintColor = .white
+        pc.pageIndicatorTintColor = .gray
         
         return pc
     }()
@@ -104,26 +116,30 @@ class OnboardingView: UIView {
         fatalError("init(coder: has not been implemented")
     }
     
-    
     fileprivate func setUpBottomControls() {
-        
-      
-        let bottomControlsStackView = UIStackView(arrangedSubviews: [previousButton, pageControl, nextButton])
-        
-        bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
-        bottomControlsStackView.distribution = .fillEqually
-        
-        self.addSubview(bottomControlsStackView)
-        
-        
-        bottomControlsStackView.snp.makeConstraints { make in
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
-            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading)
-            make.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing)
-            make.height.equalTo(50)
+        previousButton.snp.makeConstraints { make in
+            make.width.equalTo(200)
+        }
+
+        nextButton.snp.makeConstraints { make in
+            make.width.equalTo(200)
         }
         
+        let bottomControlsStackView = UIStackView(arrangedSubviews: [previousButton, pageControl, nextButton])
+
+        bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
+        bottomControlsStackView.distribution = .fill
+
+        self.addSubview(bottomControlsStackView)
+
+        bottomControlsStackView.snp.makeConstraints { make in
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
+            make.left.equalToSuperview().offset(60)
+            make.right.equalToSuperview().inset(60)
+            make.height.equalTo(60)
+        }
     }
+
     
     private func setupLayout() {
         let topImageContainerView = UIView()
@@ -149,6 +165,7 @@ class OnboardingView: UIView {
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().inset(100)
         }
+        
         
     }
     
