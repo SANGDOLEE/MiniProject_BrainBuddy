@@ -16,32 +16,32 @@ class OnboardingView: UIView {
     var currentPage = 0
     
     let mainImage: UIImageView = {
-        let imageView = UIImageView()
-        let profile = UIImage(named: "onboard")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = profile
-        return imageView
-    }()
-    
-    let descriptionTextView: UITextView = {
-        let textView = UITextView()
+            let imageView = UIImageView()
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            imageView.contentMode = .scaleAspectFit
+            return imageView
+        }()
         
-        let attributedText = NSMutableAttributedString(string: "첫번째 온보딩 페이지",attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
+        let descriptionTextView: UITextView = {
+            let textView = UITextView()
+            textView.textAlignment = .center
+            textView.isEditable = false
+            textView.isScrollEnabled = false
+            textView.translatesAutoresizingMaskIntoConstraints = false
+            return textView
+        }()
         
-        attributedText.append(NSAttributedString(string: "\n\n 온보딩 페이지 설명",
-                                                 attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13),
-                                                              NSAttributedString.Key.foregroundColor: UIColor.gray]))
-        
-        textView.attributedText = attributedText
-        
-        textView.textAlignment = .center
-        textView.isEditable = false
-        textView.isScrollEnabled = false
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return textView
-    }()
+        func configure(with page: OnboardingPage) {
+            mainImage.image = UIImage(named: page.imageName)
+
+            let attributedText = NSMutableAttributedString(string: page.attributedDescription.string, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
+            attributedText.append(NSAttributedString(string: "\n\n\(page.attributedDescription.string)",
+                                                     attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13),
+                                                                  NSAttributedString.Key.foregroundColor: UIColor.gray]))
+
+            descriptionTextView.attributedText = attributedText
+            // 추가적으로 다른 페이지에 필요한 설정도 수행할 수 있음
+        }
     
     let previousButton: UIButton = {
         let button = UIButton(type: .system)
