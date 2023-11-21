@@ -71,6 +71,12 @@ class CollectionViewController: UIViewController {
     }
     
     @objc func editButtonTapped() {
+        
+        guard !canvasData.isEmpty else { // 저장되어있는 cell이 없을떄 Edit누를시 알림띄우고 Edit모드 X
+                showAlert(message: "현재 삭제 가능한 목록이 없습니다.")
+                return
+            }
+        
         if mainView.collectionView.isEditing {
             mainView.collectionView.isEditing = false
             mainView.collectionView.allowsMultipleSelection = false
@@ -84,6 +90,13 @@ class CollectionViewController: UIViewController {
         }
         
     }
+    /// 삭제 할 cell이 1개도 있지 않을 때 알림
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
     @objc func deleteButtonTapped() {
         // 선택한 셀을 삭제
         for indexPath in selectedIndexPaths {
