@@ -30,7 +30,7 @@ extension OnboardingPage {
     static func page2() -> OnboardingPage {
         return OnboardingPage(
             imageName: "trash",
-            attributedDescription: NSAttributedString(string: "사진을 Text로 변환", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 36)]),
+            attributedDescription: NSAttributedString(string: "텍스트로 변환", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 36)]),
             discriptionText: NSAttributedString(string: "텍스트로 변환하여 학습 할 사진을 앨범에서 추가하거나 촬영하세요.\n텍스트가 없을 시 다른 사진으로 재업로드 하세요.", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 24)]),
             pageNumber: 1,
             backColor: .systemGreen
@@ -40,7 +40,7 @@ extension OnboardingPage {
     static func page3() -> OnboardingPage {
         return OnboardingPage(
             imageName: "undo",
-            attributedDescription: NSAttributedString(string: "자유롭게 학습", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 36)]),
+            attributedDescription: NSAttributedString(string: "학습", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 36)]),
             discriptionText: NSAttributedString(string: "본인이 암기했던 내용을 바탕으로 빈칸을 자유롭게 메모하며 적어보세요.", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 24)]),
             pageNumber: 2,
             backColor: .systemGreen

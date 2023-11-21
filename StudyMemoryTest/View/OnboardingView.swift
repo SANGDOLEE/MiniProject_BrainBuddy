@@ -30,12 +30,29 @@ class OnboardingView: UIView {
     func configure(with page: OnboardingPage) {
         mainImage.image = UIImage(named: page.imageName)
         
-        let attributedText = NSMutableAttributedString(string: page.attributedDescription.string, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 36),
-                                                                                                               NSAttributedString.Key.foregroundColor: UIColor.systemGray5])
-        attributedText.append(NSAttributedString(string: "\n\n\(page.discriptionText.string)",
-                                                 attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 22),
-                                                              NSAttributedString.Key.foregroundColor: UIColor.white]))
-        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+
+        let attributedText = NSMutableAttributedString()
+        let titleString = NSAttributedString(
+            string: page.attributedDescription.string,
+            attributes: [
+                NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 40),
+                NSAttributedString.Key.foregroundColor: UIColor.systemGray5,
+                NSAttributedString.Key.paragraphStyle: paragraphStyle
+            ]
+        )
+        let descriptionString = NSAttributedString(
+            string: "\n\n\(page.discriptionText.string)",
+            attributes: [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24),
+                NSAttributedString.Key.foregroundColor: UIColor.white,
+                NSAttributedString.Key.paragraphStyle: paragraphStyle
+            ]
+        )
+
+        attributedText.append(titleString)
+        attributedText.append(descriptionString)
         descriptionTextView.attributedText = attributedText
         descriptionTextView.backgroundColor = page.backColor
         backgroundColor = page.backColor // backColor 설정 추가
@@ -90,14 +107,7 @@ class OnboardingView: UIView {
     
     fileprivate func setUpBottomControls() {
         
-        let yellowView = UIView()
-        yellowView.backgroundColor = .yellow
-        
-        let greenView = UIView()
-        greenView.backgroundColor = .green
-        
-        let blueView = UIView()
-        blueView.backgroundColor = .blue
+      
         let bottomControlsStackView = UIStackView(arrangedSubviews: [previousButton, pageControl, nextButton])
         
         bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
