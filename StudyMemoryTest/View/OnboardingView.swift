@@ -6,6 +6,11 @@ extension UIColor {
     static var mainPink = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
 }
 
+// 온보딩 1 : + 버튼 눌러서 공부할 이미지 추가
+// 온보딩 2 : 공부할 내용의 사진을 추가
+// 온보딩 3 : 내가 암기한 내용들을 자유롭게 적어봅니다.
+// 온보딩 4 : 정답보기를 눌러 정답을 확인하고 저장합니다 !
+
 class OnboardingView: UIView {
     
     var currentPage = 0
@@ -22,9 +27,9 @@ class OnboardingView: UIView {
     let descriptionTextView: UITextView = {
         let textView = UITextView()
         
-        let attributedText = NSMutableAttributedString(string: "Join us today in our fun lunch!",attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
+        let attributedText = NSMutableAttributedString(string: "첫번째 온보딩 페이지",attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)])
         
-        attributedText.append(NSAttributedString(string: "\n\nAre you ready for loadsd and loads for fun? Don't wait any longer! We hope to see you in our event today.",
+        attributedText.append(NSAttributedString(string: "\n\n 온보딩 페이지 설명",
                                                  attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13),
                                                               NSAttributedString.Key.foregroundColor: UIColor.gray]))
         

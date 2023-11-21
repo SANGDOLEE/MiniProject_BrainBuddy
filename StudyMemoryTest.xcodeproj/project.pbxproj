@@ -23,6 +23,7 @@
 		1FBA01C72A161803005D8364 /* AddImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBA01C62A161803005D8364 /* AddImageView.swift */; };
 		1FBA2ADF2A5463B0005950D2 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBA2ADE2A5463B0005950D2 /* OnboardingView.swift */; };
 		1FBA2AE12A5464F5005950D2 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FBA2AE02A5464F5005950D2 /* test.png */; };
+		1FCCAF092B076CED00924CCF /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCCAF082B076CED00924CCF /* OnboardingPage.swift */; };
 		1FE315652A1C9B4A0057767B /* UserTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE315642A1C9B4A0057767B /* UserTestViewController.swift */; };
 		1FE315672A1C9B650057767B /* UserTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE315662A1C9B650057767B /* UserTestView.swift */; };
 		1FE3157B2A29E6E70057767B /* redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FE315772A29E6E70057767B /* redo.png */; };
@@ -52,6 +53,7 @@
 		1FBA01C62A161803005D8364 /* AddImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageView.swift; sourceTree = "<group>"; };
 		1FBA2ADE2A5463B0005950D2 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		1FBA2AE02A5464F5005950D2 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		1FCCAF082B076CED00924CCF /* OnboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage.swift; sourceTree = "<group>"; };
 		1FE315642A1C9B4A0057767B /* UserTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTestViewController.swift; sourceTree = "<group>"; };
 		1FE315662A1C9B650057767B /* UserTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTestView.swift; sourceTree = "<group>"; };
 		1FE315772A29E6E70057767B /* redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redo.png; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				1F4BD4E12A14D6C100CA550D /* StudyMemoryTest.xcdatamodeld */,
+				1FCCAF082B076CED00924CCF /* OnboardingPage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 			files = (
 				1FBA01C32A14F4D0005D8364 /* MainCollecionView.swift in Sources */,
 				1FBA01BD2A14E091005D8364 /* CollectionViewController.swift in Sources */,
+				1FCCAF092B076CED00924CCF /* OnboardingPage.swift in Sources */,
 				1FB64DB22A1B6D760083C2DE /* CollectionViewCell.swift in Sources */,
 				1FBA01C52A1617F4005D8364 /* AddImageViewController.swift in Sources */,
 				1FBA01C72A161803005D8364 /* AddImageView.swift in Sources */,
