@@ -37,11 +37,12 @@ class OnboardingView: UIView {
         let titleString = NSAttributedString(
             string: page.attributedDescription.string,
             attributes: [
-                NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 40),
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 40, weight: .bold),
                 NSAttributedString.Key.foregroundColor: UIColor.tintColor,
                 NSAttributedString.Key.paragraphStyle: paragraphStyle
             ]
         )
+
         let descriptionString = NSAttributedString(
             string: "\n\n\(page.discriptionText.string)",
             attributes: [
@@ -62,7 +63,7 @@ class OnboardingView: UIView {
     let previousButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("PREV", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor.tintColor
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -77,7 +78,7 @@ class OnboardingView: UIView {
     let nextButton: UIButton = {
         let button = UIButton(type:.system)
         button.setTitle("NEXT", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor.tintColor
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -94,7 +95,7 @@ class OnboardingView: UIView {
         pc.currentPage = 0
         pc.numberOfPages = 4
         pc.currentPageIndicatorTintColor = .systemBlue
-        pc.pageIndicatorTintColor = .gray
+        pc.pageIndicatorTintColor = .systemGray5
         
         return pc
     }()

@@ -20,7 +20,7 @@ extension OnboardingPage {
     static func page1() -> OnboardingPage {
         return OnboardingPage(
             imageName: "palette",
-            attributedDescription: NSAttributedString(string: "문제집 추가", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 36)]),
+            attributedDescription: NSAttributedString(string: "Quick & Easy Payment", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 36)]),
             discriptionText: NSAttributedString(string: "우측 상단의 + 버튼을 터치하여 사진을 추가하는 화면으로 넘어갑니다.", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 24)]),
             pageNumber: 0,
             backColor: .white
