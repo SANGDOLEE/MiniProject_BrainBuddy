@@ -40,6 +40,7 @@ class OnboardingController: UIViewController {
         onboardingView.currentPage -= 1
         onboardingView.pageControl.currentPage = onboardingView.currentPage
         onboardingView.configure(with: onboardingPages[onboardingView.currentPage])
+        onboardingView.nextButton.setTitle("NEXT", for: .normal)
     }
 
     @objc private func nextButtonTapped() {

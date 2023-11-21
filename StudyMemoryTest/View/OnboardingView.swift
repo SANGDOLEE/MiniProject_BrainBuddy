@@ -48,7 +48,7 @@ class OnboardingView: UIView {
         let titleString = NSAttributedString(
             string: page.attributedDescription.string,
             attributes: [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 40, weight: .bold),
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 46, weight: .bold),
                 NSAttributedString.Key.foregroundColor: UIColor.tintColor,
                 NSAttributedString.Key.paragraphStyle: paragraphStyle
             ]
@@ -57,8 +57,8 @@ class OnboardingView: UIView {
         let descriptionString = NSAttributedString(
             string: "\n\n\(page.discriptionText.string)",
             attributes: [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24),
-                NSAttributedString.Key.foregroundColor: UIColor.gray,
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 24, weight: .regular),
+                NSAttributedString.Key.foregroundColor: UIColor.systemGray2,
                 NSAttributedString.Key.paragraphStyle: paragraphStyle
             ]
         )
