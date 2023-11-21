@@ -23,10 +23,16 @@ class OnboardingController: UIViewController {
         onboardingView.configure(with: onboardingPages[0])
         
         // 온보딩 PREV, NEXT 버튼
+        onboardingView.skipButton.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
         onboardingView.previousButton.addTarget(self, action: #selector(previousButtonTapped), for: .touchUpInside)
         onboardingView.nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        
     }
 
+    @objc private func skipButtonTapped() {
+        hideOnboardingView()
+    }
+    
     @objc private func previousButtonTapped() {
         guard onboardingView.currentPage > 0 else {
             return

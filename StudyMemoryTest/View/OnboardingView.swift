@@ -10,6 +10,17 @@ class OnboardingView: UIView {
     
     var currentPage = 0
     
+    let skipButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Skip", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        button.setTitleColor(.tintColor, for: .normal)
+        button.backgroundColor = UIColor.white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     let mainImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +74,7 @@ class OnboardingView: UIView {
     let previousButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("PREV", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor.tintColor
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -78,7 +89,7 @@ class OnboardingView: UIView {
     let nextButton: UIButton = {
         let button = UIButton(type:.system)
         button.setTitle("NEXT", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor.tintColor
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -103,6 +114,7 @@ class OnboardingView: UIView {
     override init(frame: CGRect){
         super.init(frame: frame)
         
+        addSubview(skipButton)
         addSubview(mainImage)
         addSubview(descriptionTextView)
         addSubview(previousButton)
@@ -118,6 +130,12 @@ class OnboardingView: UIView {
     }
     
     fileprivate func setUpBottomControls() {
+        
+        skipButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(50)
+            make.right.equalToSuperview().inset(60)
+        }
+        
         previousButton.snp.makeConstraints { make in
             make.width.equalTo(200)
         }
@@ -134,7 +152,7 @@ class OnboardingView: UIView {
         self.addSubview(bottomControlsStackView)
 
         bottomControlsStackView.snp.makeConstraints { make in
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
+            make.bottom.equalToSuperview().inset(50)
             make.left.equalToSuperview().offset(60)
             make.right.equalToSuperview().inset(60)
             make.height.equalTo(60)
@@ -149,16 +167,15 @@ class OnboardingView: UIView {
         topImageContainerView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.5)
         }
         
-        topImageContainerView.addSubview(mainImage)
         mainImage.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(120)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().inset(20)
-            make.height.equalToSuperview().multipliedBy(0.9)
+            make.top.equalToSuperview().offset(120) // Adjust the top offset as needed
+            make.left.equalToSuperview().offset(60)
+            make.right.equalToSuperview().inset(60)
+            // Set the height to be 2/3 of the screen height
+            make.height.equalToSuperview().multipliedBy(2.5 / 5.0)
         }
         
         descriptionTextView.snp.makeConstraints { make in
@@ -166,8 +183,7 @@ class OnboardingView: UIView {
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().inset(100)
         }
-        
-        
     }
+
     
 }
