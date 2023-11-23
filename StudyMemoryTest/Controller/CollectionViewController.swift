@@ -29,7 +29,7 @@ class CollectionViewController: UIViewController {
         fetchCanvasData() /// CoreData 데이터 가져오기
         
         // MARK: 네비게이션
-        title = "오늘의 암기"
+        title = "BrainBuddy"
         
         let backButton = UIBarButtonItem() /// AddImageVC에서 현재화면으로 돌아오는 버튼 설정
         backButton.title = ""

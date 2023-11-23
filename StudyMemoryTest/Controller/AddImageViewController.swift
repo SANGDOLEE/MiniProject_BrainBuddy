@@ -24,7 +24,7 @@ class AddImageViewController: UIViewController {
         view.addSubview(addImageView)
         
         // MARK: 네비게이션
-        title = "문제집"
+        title = ""
         
         let backButton = UIBarButtonItem() /// UserTestVC에서 현재화면으로 돌아오는 버튼 설정
         backButton.title = ""

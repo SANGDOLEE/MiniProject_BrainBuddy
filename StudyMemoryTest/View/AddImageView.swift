@@ -31,7 +31,7 @@ class AddImageView : UIView{
     
     let photoLabel : UILabel = {
         let photolabel = UILabel()
-        photolabel.text = "사진을 추가해주세요."
+        photolabel.text = "학습 할 사진을 추가해주세요."
         photolabel.textColor = .systemGray6
         return photolabel
     }()
@@ -62,8 +62,8 @@ class AddImageView : UIView{
     
     let button: UIButton = {
         let button = UIButton()
-        button.setTitle("스마트 출제", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.setTitle("학습 시작", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24)
         button.backgroundColor = UIColor.tintColor
         button.setTitleColor(UIColor.white, for: .normal)
         

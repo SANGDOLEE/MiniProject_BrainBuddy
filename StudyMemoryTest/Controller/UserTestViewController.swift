@@ -23,7 +23,7 @@ class UserTestViewController: UIViewController {
         view.addSubview(userTestView)
         
         // MARK: 네비게이션
-        title = "테스트"
+        title = "Brain Test"
         let saveButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveTapped))
         saveButton.tintColor = .white
         
