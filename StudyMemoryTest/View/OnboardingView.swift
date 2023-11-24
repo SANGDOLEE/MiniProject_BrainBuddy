@@ -48,7 +48,7 @@ class OnboardingView: UIView {
         let titleString = NSAttributedString(
             string: page.attributedDescription.string,
             attributes: [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 46, weight: .bold),
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 42, weight: .bold),
                 NSAttributedString.Key.foregroundColor: UIColor.tintColor,
                 NSAttributedString.Key.paragraphStyle: paragraphStyle
             ]
@@ -74,7 +74,7 @@ class OnboardingView: UIView {
     let previousButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Prev", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor.tintColor
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -89,7 +89,7 @@ class OnboardingView: UIView {
     let nextButton: UIButton = {
         let button = UIButton(type:.system)
         button.setTitle("Next", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor.tintColor
         button.translatesAutoresizingMaskIntoConstraints = false
