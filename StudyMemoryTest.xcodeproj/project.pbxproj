@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1F1A7EFD2B10EA5D00ACCC5A /* onboard22.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F1A7EFC2B10EA5D00ACCC5A /* onboard22.png */; };
-		1F1A7F012B10EC5D00ACCC5A /* onboard3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F1A7F002B10EC5D00ACCC5A /* onboard3.png */; };
 		1F1A7F052B10ED1A00ACCC5A /* onboard4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F1A7F042B10ED1A00ACCC5A /* onboard4.png */; };
 		1F1A7F092B10EDD600ACCC5A /* onboard1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F1A7F082B10EDD600ACCC5A /* onboard1.png */; };
 		1F4BD4D92A14D6C100CA550D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4BD4D82A14D6C100CA550D /* AppDelegate.swift */; };
@@ -18,6 +17,7 @@
 		1F4BD4E52A14D6C200CA550D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F4BD4E42A14D6C200CA550D /* Assets.xcassets */; };
 		1F4BD4E82A14D6C200CA550D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F4BD4E62A14D6C200CA550D /* LaunchScreen.storyboard */; };
 		1F6214522A5EA07300DB22D4 /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6214512A5EA07300DB22D4 /* OnboardingController.swift */; };
+		1F73667F2B1997C3007D4134 /* onboard3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F73667E2B1997C3007D4134 /* onboard3.png */; };
 		1F7AF4772A189F4A009A8872 /* AlbumImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F7AF4762A189F4A009A8872 /* AlbumImage.png */; };
 		1FB64DB22A1B6D760083C2DE /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB64DB12A1B6D760083C2DE /* CollectionViewCell.swift */; };
 		1FBA01BD2A14E091005D8364 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBA01BC2A14E091005D8364 /* CollectionViewController.swift */; };
@@ -38,7 +38,6 @@
 /* Begin PBXFileReference section */
 		0CF662550C4D98CD63FA1736 /* Pods_StudyMemoryTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StudyMemoryTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F1A7EFC2B10EA5D00ACCC5A /* onboard22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onboard22.png; sourceTree = "<group>"; };
-		1F1A7F002B10EC5D00ACCC5A /* onboard3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = onboard3.png; path = ../../../../Desktop/Project_StudyMemoTest/Image/OnboardingImage/onboard3.png; sourceTree = "<group>"; };
 		1F1A7F042B10ED1A00ACCC5A /* onboard4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onboard4.png; sourceTree = "<group>"; };
 		1F1A7F082B10EDD600ACCC5A /* onboard1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = onboard1.png; sourceTree = "<group>"; };
 		1F4BD4D52A14D6C100CA550D /* StudyMemoryTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyMemoryTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +49,7 @@
 		1F4BD4E72A14D6C200CA550D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F4BD4E92A14D6C200CA550D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F6214512A5EA07300DB22D4 /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
+		1F73667E2B1997C3007D4134 /* onboard3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = onboard3.png; path = ../../../../Desktop/Project_BrainBuddy/Image/OnboardingImage/onboard3.png; sourceTree = "<group>"; };
 		1F7AF4762A189F4A009A8872 /* AlbumImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AlbumImage.png; sourceTree = "<group>"; };
 		1FB64DB12A1B6D760083C2DE /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		1FBA01BC2A14E091005D8364 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 			children = (
 				1F1A7F082B10EDD600ACCC5A /* onboard1.png */,
 				1F1A7EFC2B10EA5D00ACCC5A /* onboard22.png */,
-				1F1A7F002B10EC5D00ACCC5A /* onboard3.png */,
+				1F73667E2B1997C3007D4134 /* onboard3.png */,
 				1F1A7F042B10ED1A00ACCC5A /* onboard4.png */,
 			);
 			path = OnboardImage;
@@ -260,7 +260,7 @@
 				1F1A7F052B10ED1A00ACCC5A /* onboard4.png in Resources */,
 				1F4BD4E82A14D6C200CA550D /* LaunchScreen.storyboard in Resources */,
 				1FE3157E2A29E6E70057767B /* undo.png in Resources */,
-				1F1A7F012B10EC5D00ACCC5A /* onboard3.png in Resources */,
+				1F73667F2B1997C3007D4134 /* onboard3.png in Resources */,
 				1FE3157C2A29E6E70057767B /* palette.png in Resources */,
 				1FE3157B2A29E6E70057767B /* redo.png in Resources */,
 				1F7AF4772A189F4A009A8872 /* AlbumImage.png in Resources */,

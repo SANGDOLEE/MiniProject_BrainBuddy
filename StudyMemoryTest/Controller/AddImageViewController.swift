@@ -14,11 +14,10 @@ class AddImageViewController: UIViewController {
     
     private var addImageView : AddImageView! /// 뷰 프로퍼티
     
-    var textTemp : String? /// Image -> Text 변환되어 임시저장 될 text변수
+    var textTemp : String? /// Image -> Text인지하여 임시저장 될 text변수
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         addImageView = AddImageView(frame: view.bounds)
         view.addSubview(addImageView)
@@ -98,7 +97,7 @@ class AddImageViewController: UIViewController {
     }
     
     
-    // Visision : Image -> Text
+    /// Visision : Image -> TextRecognition
     private func recognizerText(image: UIImage?) { // 이미지는 선택사항
         guard let cgImage = image?.cgImage else { return } // Ui 이미지의 CG이미지 버전을 얻는 것
         
@@ -122,14 +121,12 @@ class AddImageViewController: UIViewController {
                 self?.addImageView.setTextViewText(text)
                 self?.textTemp = text
             }
-            
         }
         
-        // 텍스트 감지 언어 -> 한국어, 영어
-        request.recognitionLevel = .accurate
-        request.recognitionLanguages = ["ko","en","zh-Hans","ja"]
+        request.recognitionLevel = .accurate // 정확도 레벨
+        request.recognitionLanguages = ["ko","en","zh-Hans","ja"] // 텍스트 감지 언어 -> 한국어, 영어, 중국어 일본어
         request.usesLanguageCorrection = true
-        request.revision = VNRecognizeTextRequestRevision3
+        request.revision = VNRecognizeTextRequestRevision3 // 버전
         
         // Process request
         do {
@@ -142,7 +139,7 @@ class AddImageViewController: UIViewController {
     
     
     
-    // 카메라 선택
+    /// 카메라 선택
     @objc func addCameraTapped() {
         checkCameraPermissions()
         checkAlbumPermission()
@@ -174,11 +171,12 @@ class AddImageViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
         
     }
+    
     @objc func moveAlbumTapped() {
         addCameraTapped()
     }
     
-    // Camera -> 사진 추가 or 취소
+    /// Camera -> 사진 추가 or 취소
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.originalImage] as? UIImage {
             addImageView.imageView.image = image
@@ -192,7 +190,7 @@ class AddImageViewController: UIViewController {
         picker.dismiss(animated: true, completion: nil)
     }
     
-    // 카메라 Permission
+    /// 카메라 Permission
     func checkCameraPermissions() {
         AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted: Bool) in
             if granted {
@@ -200,10 +198,10 @@ class AddImageViewController: UIViewController {
             } else {
                 print("Camera: 권한 거부")
             }
-            
         })
     }
-    // 앨범 Permission
+    
+    /// 앨범 Permission
     func checkAlbumPermission() {
         PHPhotoLibrary.requestAuthorization( { status in
             switch status {
@@ -219,7 +217,7 @@ class AddImageViewController: UIViewController {
         })
     }
     
-    // imageView에 추가된 image, text 제거
+    /// imageView에 앨범이 추가됐을때 제거하기(trash Button)
     @objc func trashTapped() {
         addImageView.imageView.image = nil
         addImageView.textView.text = nil
@@ -227,10 +225,8 @@ class AddImageViewController: UIViewController {
         addImageView.photoLabel.isHidden = false // 사진이 선택되면 Label 숨김
         addImageView.albumImageView.isHidden = false
     }
-
 }
 
 extension AddImageViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
-    
     
 }
