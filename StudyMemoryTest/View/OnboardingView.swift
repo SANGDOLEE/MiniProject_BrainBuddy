@@ -73,7 +73,7 @@ class OnboardingView: UIView {
     
     let previousButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Prev", for: .normal)
+        button.setTitle("PREV", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor.tintColor
@@ -88,7 +88,7 @@ class OnboardingView: UIView {
     
     let nextButton: UIButton = {
         let button = UIButton(type:.system)
-        button.setTitle("Next", for: .normal)
+        button.setTitle("NEXT", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor.tintColor
