@@ -1,6 +1,7 @@
 <h1>BrainBuddy</h1>
-<img src="https://github.com/SANGDOLEE/MiniProject_RPEChart/assets/108053426/3e803547-ba2c-4bbe-a12e-42266a5e7d0a" width="200px;" alt=""/>
+<img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/54c196b2-526f-4555-ad00-9f1c84bbd7ac" width="200px;" alt=""/>
 <br/>
+
 
 <h1>BrainBuddy</h1>
 <p> 미니 개인 프로젝트 (MVC) </p>
