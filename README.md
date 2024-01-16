@@ -107,23 +107,26 @@
 <p> 몇 가지 테스트를 진행하였습니다. </p>
 <h3> TEST 1 : 인터넷에서 타이핑 된 정갈한 텍스트 </h3>
 <p> 보다시피 누가봐도 잘 읽을 수 있는 한글의 경우 거의 모든 글자가 정상적으로 변환됩니다.</p>
-<img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/54c196b2-526f-4555-ad00-9f1c84bbd7ac" width="200px;" alt=""/>
+<img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/ad513d56-ed7e-4974-90e9-68542385e1e2" width="350px;" alt=""/>
 
 <h3> TEST 2 : 사람이 직접 펜으로 옮겨 쓴 한글과 영어</h3>
 <p> 사람이 직접 필기해도 깨끗하게 잘 쓸수록 인식률이 좋습니다. (괄호나 영어도 잘 변환됩니다. )</p>
-<img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/54c196b2-526f-4555-ad00-9f1c84bbd7ac" width="200px;" alt=""/>
+<img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/7d8668e5-1427-4807-8038-04ca2cdcb458" width="350px;" alt=""/>
 
 <h3> TEST 3 : 영어만 있는 경우 </h3>
 <p> 역시 깔끔하고 잘 써진 영어 또한 잘 변환됩니다. </p>
-<img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/54c196b2-526f-4555-ad00-9f1c84bbd7ac" width="200px;" alt=""/>
+<img src="ttps://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/90797a40-9658-4067-ad3b-bf0ac7b7c0ed" width="350px;" alt=""/>
 
 <h3> TEST 4 : 중국어, 일본어가 있는 경우</h3>
 <p> 인터넷에서 다운 받은 정갈한 글씨임에도 중국어와 일본어는 잘 변환되지 않습니다.</p>
 <p> 
-  <img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/54c196b2-526f-4555-ad00-9f1c84bbd7ac" width="200px;" alt=""/>
-  <img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/54c196b2-526f-4555-ad00-9f1c84bbd7ac" width="200px;" alt=""/>
+  <img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/be6444ca-a129-4ed3-adf8-ba6ef08e9898" width="350px;" alt=""/>
+  <img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/1185607b-619a-4be4-a362-10dd76c3098e" width="350px;" alt=""/>
 </p>
 
+<h5> 
+한국어와 영어만 잘 번역된다면 상관없겠지만, 중국어와 일본어정도는 가까운 언어인만큼 추가하고 싶었고 이 언어를 제외한다면 앱 자체의 목적과 방향성을 조금 잃는게 아닌가 싶었습니다. 해당 에러사항을 해결하기위해선 내장프레임워크가 아닌 직접 OCR기술 자체를 구현해서 연동해야하는것과같은 생각이 들어 이렇게 마무리하게 되었습니다. 감사합니다.
+</h5>
 
 <br/>
 <br/>
