@@ -36,7 +36,7 @@
 
 <h3> Library </h3>
 <p>
-  <img src="https://img.shields.io/badge/SNAPKIT-FFA500?style=for-the-badge&logo=SNAPKIT&logoColor=white">
+  <img src="https://img.shields.io/badge/SNAPKIT-D40000?style=for-the-badge&logo=SNAPKIT&logoColor=white">
 </p>
 
 <br/>
@@ -49,7 +49,7 @@
       <td colspan="1" align="center"><b>온보딩 화면</b></td>
     </tr>
     <tr>
-      <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/MiniProject_RPEChart/assets/108053426/a7f0f8db-1481-4c75-a8b2-46350671ac63" width="200px;" alt=""/><br /><sub><b></b></sub></a></td>
+      <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/860519d8-f613-4076-9282-d9f8f67401cd" width="400px;" alt=""/><br /><sub><b></b></sub></a></td>
     </tr>
 </table>
 <!-- 두번째 테이블 -->
@@ -59,7 +59,7 @@
       <td colspan="1" align="center"><b>메인 화면</b></td>
     </tr>
     <tr>
-      <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/MiniProject_RPEChart/assets/108053426/f6a02ceb-d347-480d-861a-c8f15bbe064e" width="200px;" alt=""/><br /><sub><b></b></sub></a></td>
+      <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/9dde47bb-53b5-4acc-bad9-35bb3f62f63d" width="400px;" alt=""/><br /><sub><b></b></sub></a></td>
     </tr>
   </tbody>
 </table>
@@ -71,8 +71,8 @@
       <td colspan="1" align="center"><b>학습 추가화면 2</b></td>
     </tr>
     <tr>
-      <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/MiniProject_RPEChart/assets/108053426/38d47304-9422-4377-bbf9-3c9d0b6f6e42" width="200px;" alt=""/><br /><sub><b></b></sub></a></td>
-      <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/MiniProject_RPEChart/assets/108053426/9cf8b4fd-9191-493e-9936-f8a2b6962e0a" width="200px;" alt=""/><br /><sub><b></b></sub></a></td>
+      <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/8e985fe3-8bf7-42b2-a3e0-220a996202f5" width="400px;" alt=""/><br /><sub><b></b></sub></a></td>
+      <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/65ed4a42-f112-4636-901b-a95cc00b9c8c" width="400px;" alt=""/><br /><sub><b></b></sub></a></td>
     </tr>
    </tbody>
 </table>
@@ -84,8 +84,8 @@
       <td colspan="1" align="center"><b>학습 화면 2</b></td>
     </tr>
     <tr>
-      <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/MiniProject_RPEChart/assets/108053426/38d47304-9422-4377-bbf9-3c9d0b6f6e42" width="200px;" alt=""/><br /><sub><b></b></sub></a></td>
-      <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/MiniProject_RPEChart/assets/108053426/9cf8b4fd-9191-493e-9936-f8a2b6962e0a" width="200px;" alt=""/><br /><sub><b></b></sub></a></td>
+      <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/4762a6e8-339b-461f-a836-39a5927b1016" width="400px;" alt=""/><br /><sub><b></b></sub></a></td>
+      <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/51ecfa8b-f4d6-4116-8d4a-f30dd17c66ec" width="400px;" alt=""/><br /><sub><b></b></sub></a></td>
     </tr>
    </tbody>
 </table>
@@ -102,8 +102,27 @@
 <br/>
 
 <h1> ✅ 출시하지 못한 이유 </h1>
+<p> 사실 해당 프로젝트의 목적은 아이패드전용 앱으로 Snapkit과 Pencilkit을 사용해보고, MVC패턴으로 코드를 구조화해보고자 했던 목표가 컸습니다. 이후 어느정도 완성도가 있다면 출시까지 생각을 해보았지만, Onboarding화면을 제외한 Vision기술 및 전체적인 화면을 거의 다 구현했을 때 에러사항을 발견하였습니다. </p>
+<p> 변환언어가 잘 설정되어있음에도 일부 텍스트 사진에서 변환이 잘 되지 않는 것입니다. 여기서 잘 되지 않는다는 것은 변환과정에서 앱이 멈추는 현상까지 내포합니다. </p>
+<p> 몇 가지 테스트를 진행하였습니다. </p>
+<h3> TEST 1 : 인터넷에서 타이핑 된 정갈한 텍스트 </h3>
+<p> 보다시피 누가봐도 잘 읽을 수 있는 한글의 경우 거의 모든 글자가 정상적으로 변환됩니다.</p>
+<img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/54c196b2-526f-4555-ad00-9f1c84bbd7ac" width="200px;" alt=""/>
 
+<h3> TEST 2 : 사람이 직접 펜으로 옮겨 쓴 한글과 영어</h3>
+<p> 사람이 직접 필기해도 깨끗하게 잘 쓸수록 인식률이 좋습니다. (괄호나 영어도 잘 변환됩니다. )</p>
+<img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/54c196b2-526f-4555-ad00-9f1c84bbd7ac" width="200px;" alt=""/>
 
+<h3> TEST 3 : 영어만 있는 경우 </h3>
+<p> 역시 깔끔하고 잘 써진 영어 또한 잘 변환됩니다. </p>
+<img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/54c196b2-526f-4555-ad00-9f1c84bbd7ac" width="200px;" alt=""/>
+
+<h3> TEST 4 : 중국어, 일본어가 있는 경우</h3>
+<p> 인터넷에서 다운 받은 정갈한 글씨임에도 중국어와 일본어는 잘 변환되지 않습니다.</p>
+<p> 
+  <img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/54c196b2-526f-4555-ad00-9f1c84bbd7ac" width="200px;" alt=""/>
+  <img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/54c196b2-526f-4555-ad00-9f1c84bbd7ac" width="200px;" alt=""/>
+</p>
 
 
 <br/>
