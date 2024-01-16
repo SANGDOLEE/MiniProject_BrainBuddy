@@ -67,8 +67,8 @@
 <table>
    <tbody>
    <tr>
-      <td colspan="1" align="center"><b>학습 추가화면 1</b></td>
-      <td colspan="1" align="center"><b>학습 추가화면 2</b></td>
+      <td colspan="1" align="center"><b>학습추가 화면 1</b></td>
+      <td colspan="1" align="center"><b>학습추가 화면 2</b></td>
     </tr>
     <tr>
       <td align="center"><a href=""><img src="https://github.com/SANGDOLEE/MiniProject_BrainBuddy/assets/108053426/8e985fe3-8bf7-42b2-a3e0-220a996202f5" width="400px;" alt=""/><br /><sub><b></b></sub></a></td>
