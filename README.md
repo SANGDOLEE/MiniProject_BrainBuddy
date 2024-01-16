@@ -9,7 +9,7 @@
 
 <br/>
 
-<h2> 배포주소 </h2>
+<h2> 배포 주소 </h2>
 <p> 배포 : 미출시 </p>
 <p> 시연영상 : https://youtu.be/Bb18xZAaaeY </p>
 
